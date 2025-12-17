@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBK数学答题王</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <h1>🎓 BBK数学答题王</h1>
+            <div class="login-form">
+                <div class="form-group">
+                    <label>选择班级:</label>
+                    <select id="classSelect">
+                        <option value="">请选择班级</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>选择姓名:</label>
+                    <select id="nameSelect" disabled>
+                        <option value="">请先选择班级</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>输入账号:</label>
+                    <input type="text" id="accountInput" placeholder="请输入账号" disabled>
+                </div>
+                <button id="loginBtn" class="btn btn-primary" disabled>开始答题</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 答题主界面 -->
+    <div id="gamePage" class="page">
+        <!-- 顶部信息栏 -->
+        <div class="top-bar">
+            <div class="player-info">
+                <span id="playerName"></span>
+                <span class="level">等级: <span id="playerLevel">1</span></span>
+                <span class="streak" id="streakDisplay" style="display:none;">连杀: <span id="streakCount">0</span></span>
+            </div>
+            <div class="elements-display">
+                <span class="element fire">🔥 <span id="fireCount">0</span></span>
+                <span class="element water">💧 <span id="waterCount">0</span></span>
+                <span class="element wind">🌪️ <span id="windCount">0</span></span>
+                <span class="element rock">🪨 <span id="rockCount">0</span></span>
+                <span class="element grass">🌿 <span id="grassCount">0</span></span>
+                <span class="element thunder">⚡ <span id="thunderCount">0</span></span>
+                <span class="element ice">❄️ <span id="iceCount">0</span></span>
+            </div>
+            <div class="action-buttons">
+                <button id="challengeBtn" class="btn btn-warning">挑战模式</button>
+                <button id="giftBtn" class="btn btn-info">赠送元素</button>
+                <button id="upgradeBtn" class="btn btn-success">升级</button>
+                <button id="wrongQuestionsBtn" class="btn btn-secondary">错题本</button>
+                <button id="rankBtn" class="btn btn-primary">排行榜</button>
+                <button id="muteBtn" class="btn btn-secondary">🔊 音效</button>
+            </div>
+        </div>
+
+        <!-- 实时播报 -->
+        <div class="broadcast-bar">
+            <span class="broadcast-icon">📢</span>
+            <div class="broadcast-content" id="broadcastContent">
+                欢迎来到BBK数学答题王!
+            </div>
+        </div>
+
+        <!-- 答题区域 -->
+        <div class="question-container">
+            <div class="question-header">
+                <h2>题目 <span id="questionNumber">1</span></h2>
+                <div id="timerDisplay" class="timer"></div>
+            </div>
+            <div class="question-content" id="questionContent">
+                正在加载题目...
+            </div>
+            <div class="answer-input">
+                <input type="text" id="answerInput" placeholder="点击数字键盘输入" readonly disabled>
+            </div>
+            
+            <!-- 数字键盘 -->
+            <div class="number-pad" id="numberPad" style="display: none;">
+                <div class="number-pad-display">
+                    <button class="number-btn">1</button>
+                    <button class="number-btn">2</button>
+                    <button class="number-btn">3</button>
+                </div>
+                <div class="number-pad-display">
+                    <button class="number-btn">4</button>
+                    <button class="number-btn">5</button>
+                    <button class="number-btn">6</button>
+                </div>
+                <div class="number-pad-display">
+                    <button class="number-btn">7</button>
+                    <button class="number-btn">8</button>
+                    <button class="number-btn">9</button>
+                </div>
+                <div class="number-pad-display">
+                    <button class="number-btn negative">-</button>
+                    <button class="number-btn">0</button>
+                    <button class="number-btn delete">删除</button>
+                </div>
+            </div>
+            
+            <button id="submitBtn" class="btn btn-primary submit-large" disabled>提交答案</button>
+            
+            <div id="resultDisplay" class="result-display"></div>
+        </div>
+    </div>
+
+    <!-- 挑战模式弹窗 -->
+    <div id="challengeModal" class="modal">
+        <div class="modal-content">
+            <h2>⚔️ 挑战模式</h2>
+            <p class="challenge-desc">消耗元素: 火🔥×1, 水💧×1, 风🌪️×1, 岩🪨×1, 草🌿×1</p>
+            <p class="challenge-reward">奖励: 在60秒内答对可获得稀有元素(雷⚡/火🔥)</p>
+            <div class="modal-actions">
+                <button id="confirmChallengeBtn" class="btn btn-success">确定</button>
+                <button id="cancelChallengeBtn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 赠送弹窗 -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <h2>🎁 赠送元素</h2>
+            <div class="form-group">
+                <label>选择班级:</label>
+                <select id="giftClassSelect">
+                    <option value="">请选择班级</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>选择姓名:</label>
+                <select id="giftNameSelect" disabled>
+                    <option value="">请先选择班级</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>选择元素:</label>
+                <select id="giftElementSelect">
+                    <option value="fire">火🔥</option>
+                    <option value="water">水💧</option>
+                    <option value="wind">风🌪️</option>
+                    <option value="rock">岩🪨</option>
+                    <option value="grass">草🌿</option>
+                    <option value="thunder">雷⚡</option>
+                    <option value="ice">冰❄️</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>数量:</label>
+                <input type="number" id="giftAmountInput" min="1" value="1">
+            </div>
+            <div class="modal-actions">
+                <button id="confirmGiftBtn" class="btn btn-success">确定赠送</button>
+                <button id="cancelGiftBtn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 升级弹窗 -->
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <h2>⬆️ 升级</h2>
+            <p>当前等级: <span id="currentLevel"></span></p>
+            <p class="upgrade-requirement">升级需要: 雷⚡×1, 火🔥×1, 其他元素共10个</p>
+            <div id="upgradeStatus" class="upgrade-status"></div>
+            <div class="modal-actions">
+                <button id="confirmUpgradeBtn" class="btn btn-success">确定升级</button>
+                <button id="cancelUpgradeBtn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 错题本弹窗 -->
+    <div id="wrongQuestionsModal" class="modal">
+        <div class="modal-content large">
+            <h2>📝 错题本</h2>
+            <div id="wrongQuestionsList" class="wrong-questions-list"></div>
+            <div class="modal-actions">
+                <button id="downloadWrongBtn" class="btn btn-info">下载错题</button>
+                <button id="closeWrongBtn" class="btn btn-secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 排行榜弹窗 -->
+    <div id="rankModal" class="modal">
+        <div class="modal-content large">
+            <h2>🏆 排行榜</h2>
+            <div class="rank-tabs">
+                <button id="classRankTab" class="rank-tab active">班级排行</button>
+                <button id="totalRankTab" class="rank-tab">总榜排行</button>
+            </div>
+            <div id="rankList" class="rank-list"></div>
+            <div class="modal-actions">
+                <button id="closeRankBtn" class="btn btn-secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 连杀提示 -->
+    <div id="killNotification" class="kill-notification"></div>
+
+    <script src="audio-manager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

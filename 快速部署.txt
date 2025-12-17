@@ -1,0 +1,87 @@
+============================================
+  BBK数学答题王 - 最简单部署方法
+============================================
+
+【方法一: Glitch (最简单,无需Git)】
+
+1. 访问 https://glitch.com 并注册
+
+2. 点击 "New Project" → "glitch-hello-node"
+
+3. 点击左侧 "Tools" → "Import from GitHub"
+   或者手动上传所有文件
+
+4. 等待自动部署完成
+
+5. 点击顶部 "Show" 查看网站
+
+6. 获得网址如: https://你的项目名.glitch.me
+
+✅ 完成! 立即可用!
+
+============================================
+
+【方法二: Railway (推荐,支持GitHub)】
+
+1. 先上传代码到 GitHub:
+   - 在 GitHub 创建新仓库
+   - 在本地项目文件夹执行:
+     git init
+     git add .
+     git commit -m "first commit"
+     git remote add origin https://github.com/你的用户名/bbk-game.git
+     git push -u origin main
+
+2. 访问 https://railway.app 并用 GitHub 登录
+
+3. 点击 "New Project" → "Deploy from GitHub repo"
+
+4. 选择你的仓库 → 自动部署
+
+5. 在 Settings → Networking 生成域名
+
+6. 获得网址如: https://bbk-game.up.railway.app
+
+✅ 完成! 每次推送代码自动更新!
+
+============================================
+
+【方法三: Vercel (最快)】
+
+1. 上传代码到 GitHub (同方法二步骤1)
+
+2. 访问 https://vercel.com 并用 GitHub 登录
+
+3. 点击 "New Project"
+
+4. 导入你的 GitHub 仓库
+
+5. 点击 "Deploy"
+
+6. 获得网址如: https://bbk-game.vercel.app
+
+✅ 完成!
+
+============================================
+
+【推荐选择】
+
+新手 → Glitch (最简单)
+学生 → Railway (免费额度大)
+长期 → Railway 或 Render
+
+============================================
+
+【注意事项】
+
+1. 部署后,游戏会自动使用线上地址,无需修改代码
+
+2. 数据会保存在服务器上(Glitch/Railway/Render都支持)
+
+3. 分享网址给同学即可一起玩!
+
+4. 如需修改学生名单,编辑 students.json 后重新部署
+
+============================================
+
+遇到问题? 查看详细文档: DEPLOYMENT.md

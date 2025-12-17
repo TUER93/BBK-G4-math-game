@@ -1,0 +1,2448 @@
+[
+  {
+    "id": 1,
+    "question": "计算: 25 + 37 = ?",
+    "answer": "62",
+    "explanation": "25 + 37 = 62"
+  },
+  {
+    "id": 2,
+    "question": "计算: 89 - 43 = ?",
+    "answer": "46",
+    "explanation": "89 - 43 = 46"
+  },
+  {
+    "id": 3,
+    "question": "计算: 12 × 8 = ?",
+    "answer": "96",
+    "explanation": "12 × 8 = 96"
+  },
+  {
+    "id": 4,
+    "question": "计算: 144 ÷ 12 = ?",
+    "answer": "12",
+    "explanation": "144 ÷ 12 = 12"
+  },
+  {
+    "id": 5,
+    "question": "计算: 5 + 6 × 3 = ?",
+    "answer": "23",
+    "explanation": "先算乘法: 6 × 3 = 18, 再加5: 18 + 5 = 23"
+  },
+  {
+    "id": 6,
+    "question": "计算: (8 + 4) × 3 = ?",
+    "answer": "36",
+    "explanation": "先算括号: 8 + 4 = 12, 再乘3: 12 × 3 = 36"
+  },
+  {
+    "id": 7,
+    "question": "计算: 100 - 25 - 15 = ?",
+    "answer": "60",
+    "explanation": "100 - 25 = 75, 75 - 15 = 60"
+  },
+  {
+    "id": 8,
+    "question": "计算: 15 × 4 + 10 = ?",
+    "answer": "70",
+    "explanation": "先算乘法: 15 × 4 = 60, 再加10: 60 + 10 = 70"
+  },
+  {
+    "id": 9,
+    "question": "计算: 81 ÷ 9 × 2 = ?",
+    "answer": "18",
+    "explanation": "从左到右计算: 81 ÷ 9 = 9, 9 × 2 = 18"
+  },
+  {
+    "id": 10,
+    "question": "计算: 50 + 30 - 20 = ?",
+    "answer": "60",
+    "explanation": "50 + 30 = 80, 80 - 20 = 60"
+  },
+  {
+    "id": 11,
+    "question": "计算: 7 × 7 = ?",
+    "answer": "49",
+    "explanation": "7 × 7 = 49"
+  },
+  {
+    "id": 12,
+    "question": "计算: 64 ÷ 8 + 5 = ?",
+    "answer": "13",
+    "explanation": "64 ÷ 8 = 8, 8 + 5 = 13"
+  },
+  {
+    "id": 13,
+    "question": "计算: 18 + 12 × 2 = ?",
+    "answer": "42",
+    "explanation": "先算乘法: 12 × 2 = 24, 再加18: 18 + 24 = 42"
+  },
+  {
+    "id": 14,
+    "question": "计算: (20 - 5) × 4 = ?",
+    "answer": "60",
+    "explanation": "先算括号: 20 - 5 = 15, 再乘4: 15 × 4 = 60"
+  },
+  {
+    "id": 15,
+    "question": "计算: 36 ÷ 6 + 8 = ?",
+    "answer": "14",
+    "explanation": "36 ÷ 6 = 6, 6 + 8 = 14"
+  },
+  {
+    "id": 16,
+    "question": "计算: 9 × 6 - 10 = ?",
+    "answer": "44",
+    "explanation": "9 × 6 = 54, 54 - 10 = 44"
+  },
+  {
+    "id": 17,
+    "question": "计算: 45 + 55 = ?",
+    "answer": "100",
+    "explanation": "45 + 55 = 100"
+  },
+  {
+    "id": 18,
+    "question": "计算: 72 ÷ 9 × 3 = ?",
+    "answer": "24",
+    "explanation": "72 ÷ 9 = 8, 8 × 3 = 24"
+  },
+  {
+    "id": 19,
+    "question": "计算: 11 × 11 = ?",
+    "answer": "121",
+    "explanation": "11 × 11 = 121"
+  },
+  {
+    "id": 20,
+    "question": "计算: 200 - 75 - 25 = ?",
+    "answer": "100",
+    "explanation": "200 - 75 = 125, 125 - 25 = 100"
+  },
+  {
+    "id": 21,
+    "question": "小明有20个苹果,吃了5个,又买了8个,现在有多少个?",
+    "answer": "23",
+    "explanation": "20 - 5 + 8 = 23个"
+  },
+  {
+    "id": 22,
+    "question": "一个长方形长8米,宽5米,周长是多少米?",
+    "answer": "26",
+    "explanation": "周长 = (8 + 5) × 2 = 26米"
+  },
+  {
+    "id": 23,
+    "question": "每本书15元,买6本需要多少元?",
+    "answer": "90",
+    "explanation": "15 × 6 = 90元"
+  },
+  {
+    "id": 24,
+    "question": "48个学生平均分成6组,每组多少人?",
+    "answer": "8",
+    "explanation": "48 ÷ 6 = 8人"
+  },
+  {
+    "id": 25,
+    "question": "计算: 13 × 5 = ?",
+    "answer": "65",
+    "explanation": "13 × 5 = 65"
+  },
+  {
+    "id": 26,
+    "question": "计算：490 ÷  70 = ？",
+    "answer": "7",
+    "explanation": "490 ÷  70 = 7",
+    "difficulty": "简单"
+  },
+  {
+    "id": 27,
+    "question": "计算：9000 - 4567 = ?",
+    "answer": "4433",
+    "explanation": "9000 - 4567 = 4433",
+    "difficulty": "简单"
+  },
+  {
+    "id": 28,
+    "question": "1234 + 5678 = ?",
+    "answer": "6912",
+    "explanation": "1234 + 5678 = 6912",
+    "difficulty": "简单"
+  },
+  {
+    "id": 29,
+    "question": "7200 - 3854 = ?",
+    "answer": "3346",
+    "explanation": "7200 - 3854 = 3346",
+    "difficulty": "简单"
+  },
+  {
+    "id": 30,
+    "question": "256 × 32 = ?",
+    "answer": "8192",
+    "explanation": "256 × 32 = 8192",
+    "difficulty": "简单"
+  },
+  {
+    "id": 31,
+    "question": "3927 ÷ 3 = ?",
+    "answer": "1309",
+    "explanation": "3927 ÷ 3 = 1309",
+    "difficulty": "简单"
+  },
+  {
+    "id": 32,
+    "question": "6483 + 2571 = ?",
+    "answer": "9054",
+    "explanation": "6483 + 2571 = 9054",
+    "difficulty": "简单"
+  },
+  {
+    "id": 33,
+    "question": "5000 - 1234 = ?",
+    "answer": "3766",
+    "explanation": "5000 - 1234 = 3766",
+    "difficulty": "简单"
+  },
+  {
+    "id": 34,
+    "question": "125 × 48 = ?",
+    "answer": "6000",
+    "explanation": "125 × 48 = 6000",
+    "difficulty": "简单"
+  },
+  {
+    "id": 35,
+    "question": "8712 ÷ 12 = ?",
+    "answer": "726",
+    "explanation": "8712 ÷ 12 = 726",
+    "difficulty": "简单"
+  },
+  {
+    "id": 36,
+    "question": "328 × 19 = ?",
+    "answer": "6232",
+    "explanation": "328 × 20 - 328 = 6560 - 328 = 6232",
+    "difficulty": "简单"
+  },
+  {
+    "id": 37,
+    "question": "4500 ÷ 25 = ?",
+    "answer": "180",
+    "explanation": "4500 ÷ 100 × 4 = 45 × 4 = 180",
+    "difficulty": "简单"
+  },
+  {
+    "id": 38,
+    "question": "147 × 63 = ?",
+    "answer": "9261",
+    "explanation": "147 × 60 = 8820，147 × 3 = 441，8820 + 441 = 9261",
+    "difficulty": "中等"
+  },
+  {
+    "id": 39,
+    "question": "864 ÷ 36 = ?",
+    "answer": "24",
+    "explanation": "36 × 24 = 864，所以864 ÷ 36 = 24",
+    "difficulty": "简单"
+  },
+  {
+    "id": 40,
+    "question": "205 × 47 = ?",
+    "answer": "9635",
+    "explanation": "200 × 47 = 9400，5 × 47 = 235，9400 + 235 = 9635",
+    "difficulty": "中等"
+  },
+  {
+    "id": 41,
+    "question": "7392 ÷ 28 = ?",
+    "answer": "264",
+    "explanation": "28 × 264 = 7392",
+    "difficulty": "简单"
+  },
+  {
+    "id": 42,
+    "question": "512 × 16 = ?",
+    "answer": "8192",
+    "explanation": "512 × 10 = 5120，512 × 6 = 3072，5120 + 3072 = 8192",
+    "difficulty": "简单"
+  },
+  {
+    "id": 43,
+    "question": "9999 ÷ 33 = ?",
+    "answer": "303",
+    "explanation": "33 × 303 = 9999",
+    "difficulty": "简单"
+  },
+  {
+    "id": 44,
+    "question": "789 × 11 = ?",
+    "answer": "8679",
+    "explanation": "789 × 10 = 7890，789 × 1 = 789，7890 + 789 = 8679",
+    "difficulty": "简单"
+  },
+  {
+    "id": 45,
+    "question": "6240 ÷ 48 = ?",
+    "answer": "130",
+    "explanation": "48 × 130 = 6240",
+    "difficulty": "简单"
+  },
+  {
+    "id": 46,
+    "question": "333 × 24 = ?",
+    "answer": "7992",
+    "explanation": "333 × 20 = 6660，333 × 4 = 1332，6660 + 1332 = 7992",
+    "difficulty": "中等"
+  },
+  {
+    "id": 47,
+    "question": "4950 ÷ 45 = ?",
+    "answer": "110",
+    "explanation": "45 × 110 = 4950",
+    "difficulty": "简单"
+  },
+  {
+    "id": 48,
+    "question": "888 × 9 = ?",
+    "answer": "7992",
+    "explanation": "888 × 10 - 888 = 8880 - 888 = 7992",
+    "difficulty": "简单"
+  },
+  {
+    "id": 49,
+    "question": "6720 ÷ 56 = ?",
+    "answer": "120",
+    "explanation": "56 × 120 = 6720",
+    "difficulty": "简单"
+  },
+  {
+    "id": 50,
+    "question": "784 ÷ 28 = ?",
+    "answer": "28",
+    "explanation": "28 × 28 = 784，所以784 ÷ 28 = 28",
+    "difficulty": "简单"
+  },
+  {
+    "id": 51,
+    "question": "1350 ÷ 45 = ?",
+    "answer": "30",
+    "explanation": "45 × 30 = 1350，所以1350 ÷ 45 = 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 52,
+    "question": "2916 ÷ 54 = ?",
+    "answer": "54",
+    "explanation": "54 × 54 = 2916，所以2916 ÷ 54 = 54",
+    "difficulty": "简单"
+  },
+  {
+    "id": 53,
+    "question": "3969 ÷ 63 = ?",
+    "answer": "63",
+    "explanation": "63 × 63 = 3969，所以3969 ÷ 63 = 63",
+    "difficulty": "中等"
+  },
+  {
+    "id": 54,
+    "question": "1225 ÷ 35 = ?",
+    "answer": "35",
+    "explanation": "35 × 35 = 1225，所以1225 ÷ 35 = 35",
+    "difficulty": "简单"
+  },
+  {
+    "id": 55,
+    "question": "5040 ÷ 72 = ?",
+    "answer": "70",
+    "explanation": "72 × 70 = 5040，所以5040 ÷ 72 = 70",
+    "difficulty": "简单"
+  },
+  {
+    "id": 56,
+    "question": "6480 ÷ 90 = ?",
+    "answer": "72",
+    "explanation": "90 × 72 = 6480，所以6480 ÷ 90 = 72",
+    "difficulty": "简单"
+  },
+  {
+    "id": 57,
+    "question": "9604 ÷ 98 = ?",
+    "answer": "98",
+    "explanation": "98 × 98 = 9604，所以9604 ÷ 98 = 98",
+    "difficulty": "中等"
+  },
+  {
+    "id": 58,
+    "question": "1568 ÷ 56 = ?",
+    "answer": "28",
+    "explanation": "56 × 28 = 1568，所以1568 ÷ 56 = 28",
+    "difficulty": "简单"
+  },
+  {
+    "id": 59,
+    "question": "3024 ÷ 84 = ?",
+    "answer": "36",
+    "explanation": "84 × 36 = 3024，所以3024 ÷ 84 = 36",
+    "difficulty": "简单"
+  },
+  {
+    "id": 60,
+    "question": "4096 ÷ 64 = ?",
+    "answer": "64",
+    "explanation": "64 × 64 = 4096，所以4096 ÷ 64 = 64",
+    "difficulty": "中等"
+  },
+  {
+    "id": 61,
+    "question": "5184 ÷ 96 = ?",
+    "answer": "54",
+    "explanation": "96 × 54 = 5184，所以5184 ÷ 96 = 54",
+    "difficulty": "中等"
+  },
+  {
+    "id": 62,
+    "question": "6724 ÷ 82 = ?",
+    "answer": "82",
+    "explanation": "82 × 82 = 6724，所以6724 ÷ 82 = 82",
+    "difficulty": "中等"
+  },
+  {
+    "id": 63,
+    "question": "7921 ÷ 89 = ?",
+    "answer": "89",
+    "explanation": "89 × 89 = 7921，所以7921 ÷ 89 = 89",
+    "difficulty": "中等"
+  },
+  {
+    "id": 64,
+    "question": "15 + 8 × 3 = ?",
+    "answer": "39",
+    "explanation": "先乘后加：8 × 3 = 24，15 + 24 = 39",
+    "difficulty": "简单"
+  },
+  {
+    "id": 65,
+    "question": "24 ÷ 6 + 10 = ?",
+    "answer": "14",
+    "explanation": "先除后加：24 ÷ 6 = 4，4 + 10 = 14",
+    "difficulty": "简单"
+  },
+  {
+    "id": 66,
+    "question": "7 × 5 - 12 = ?",
+    "answer": "23",
+    "explanation": "先乘后减：7 × 5 = 35，35 - 12 = 23",
+    "difficulty": "简单"
+  },
+  {
+    "id": 67,
+    "question": "45 - 18 ÷ 3 = ?",
+    "answer": "39",
+    "explanation": "先除后减：18 ÷ 3 = 6，45 - 6 = 39",
+    "difficulty": "简单"
+  },
+  {
+    "id": 68,
+    "question": "9 + 6 × 4 = ?",
+    "answer": "33",
+    "explanation": "先乘后加：6 × 4 = 24，9 + 24 = 33",
+    "difficulty": "简单"
+  },
+  {
+    "id": 69,
+    "question": "36 ÷ 9 + 7 = ?",
+    "answer": "11",
+    "explanation": "先除后加：36 ÷ 9 = 4，4 + 7 = 11",
+    "difficulty": "简单"
+  },
+  {
+    "id": 70,
+    "question": "8 × 6 - 15 = ?",
+    "answer": "33",
+    "explanation": "先乘后减：8 × 6 = 48，48 - 15 = 33",
+    "difficulty": "简单"
+  },
+  {
+    "id": 71,
+    "question": "50 - 28 ÷ 4 = ?",
+    "answer": "43",
+    "explanation": "先除后减：28 ÷ 4 = 7，50 - 7 = 43",
+    "difficulty": "简单"
+  },
+  {
+    "id": 72,
+    "question": "12 + 5 × 8 = ?",
+    "answer": "52",
+    "explanation": "先乘后加：5 × 8 = 40，12 + 40 = 52",
+    "difficulty": "简单"
+  },
+  {
+    "id": 73,
+    "question": "64 ÷ 8 + 9 = ?",
+    "answer": "17",
+    "explanation": "先除后加：64 ÷ 8 = 8，8 + 9 = 17",
+    "difficulty": "简单"
+  },
+  {
+    "id": 74,
+    "question": "6 × 7 - 20 = ?",
+    "answer": "22",
+    "explanation": "先乘后减：6 × 7 = 42，42 - 20 = 22",
+    "difficulty": "简单"
+  },
+  {
+    "id": 75,
+    "question": "30 - 16 ÷ 4 = ?",
+    "answer": "26",
+    "explanation": "先除后减：16 ÷ 4 = 4，30 - 4 = 26",
+    "difficulty": "简单"
+  },
+  {
+    "id": 76,
+    "question": "8 + 6 × 3 - 5 = ?",
+    "answer": "21",
+    "explanation": "先乘后加减：6 × 3 = 18，8 + 18 = 26，26 - 5 = 21",
+    "difficulty": "简单"
+  },
+  {
+    "id": 77,
+    "question": "12 - 4 ÷ 2 + 9 = ?",
+    "answer": "19",
+    "explanation": "先除后加减：4 ÷ 2 = 2，12 - 2 = 10，10 + 9 = 19",
+    "difficulty": "简单"
+  },
+  {
+    "id": 78,
+    "question": "5 × 3 + 10 ÷ 2 = ?",
+    "answer": "20",
+    "explanation": "先乘除后加：5 × 3 = 15，10 ÷ 2 = 5，15 + 5 = 20",
+    "difficulty": "简单"
+  },
+  {
+    "id": 79,
+    "question": "20 ÷ 4 + 7 × 2 = ?",
+    "answer": "19",
+    "explanation": "先乘除后加：20 ÷ 4 = 5，7 × 2 = 14，5 + 14 = 19",
+    "difficulty": "简单"
+  },
+  {
+    "id": 80,
+    "question": "9 + 12 ÷ 3 - 5 = ?",
+    "answer": "8",
+    "explanation": "先除后加减：12 ÷ 3 = 4，9 + 4 = 13，13 - 5 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 81,
+    "question": "6 × 4 - 8 ÷ 2 = ?",
+    "answer": "20",
+    "explanation": "先乘除后减：6 × 4 = 24，8 ÷ 2 = 4，24 - 4 = 20",
+    "difficulty": "简单"
+  },
+  {
+    "id": 82,
+    "question": "15 - 3 × 2 + 7 = ?",
+    "answer": "16",
+    "explanation": "先乘后加减：3 × 2 = 6，15 - 6 = 9，9 + 7 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 83,
+    "question": "18 ÷ 3 + 5 × 2 = ?",
+    "answer": "16",
+    "explanation": "先乘除后加：18 ÷ 3 = 6，5 × 2 = 10，6 + 10 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 84,
+    "question": "10 + 8 ÷ 4 × 3 = ?",
+    "answer": "16",
+    "explanation": "先除后乘再加：8 ÷ 4 = 2，2 × 3 = 6，10 + 6 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 85,
+    "question": "14 - 6 ÷ 3 + 5 = ?",
+    "answer": "17",
+    "explanation": "先除后加减：6 ÷ 3 = 2，14 - 2 = 12，12 + 5 = 17",
+    "difficulty": "简单"
+  },
+  {
+    "id": 86,
+    "question": "4 × 5 - 12 ÷ 4 = ?",
+    "answer": "17",
+    "explanation": "先乘除后减：4 × 5 = 20，12 ÷ 4 = 3，20 - 3 = 17",
+    "difficulty": "简单"
+  },
+  {
+    "id": 87,
+    "question": "21 ÷ 7 + 9 - 3 = ?",
+    "answer": "9",
+    "explanation": "先除后加减：21 ÷ 7 = 3，3 + 9 = 12，12 - 3 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 88,
+    "question": "126 ÷ 21 = ?",
+    "answer": "6",
+    "explanation": "21 × 6 = 126，所以126 ÷ 21 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 89,
+    "question": "144 ÷ 24 = ?",
+    "answer": "6",
+    "explanation": "24 × 6 = 144，所以144 ÷ 24 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 90,
+    "question": "165 ÷ 33 = ?",
+    "answer": "5",
+    "explanation": "33 × 5 = 165，所以165 ÷ 33 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 91,
+    "question": "192 ÷ 32 = ?",
+    "answer": "6",
+    "explanation": "32 × 6 = 192，所以192 ÷ 32 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 92,
+    "question": "216 ÷ 36 = ?",
+    "answer": "6",
+    "explanation": "36 × 6 = 216，所以216 ÷ 36 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 93,
+    "question": "245 ÷ 49 = ?",
+    "answer": "5",
+    "explanation": "49 × 5 = 245，所以245 ÷ 49 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 94,
+    "question": "270 ÷ 45 = ?",
+    "answer": "6",
+    "explanation": "45 × 6 = 270，所以270 ÷ 45 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 95,
+    "question": "288 ÷ 48 = ?",
+    "answer": "6",
+    "explanation": "48 × 6 = 288，所以288 ÷ 48 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 96,
+    "question": "315 ÷ 63 = ?",
+    "answer": "5",
+    "explanation": "63 × 5 = 315，所以315 ÷ 63 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 97,
+    "question": "336 ÷ 56 = ?",
+    "answer": "6",
+    "explanation": "56 × 6 = 336，所以336 ÷ 56 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 98,
+    "question": "360 ÷ 72 = ?",
+    "answer": "5",
+    "explanation": "72 × 5 = 360，所以360 ÷ 72 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 99,
+    "question": "378 ÷ 54 = ?",
+    "answer": "7",
+    "explanation": "54 × 7 = 378，所以378 ÷ 54 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 100,
+    "question": "396 ÷ 66 = ?",
+    "answer": "6",
+    "explanation": "66 × 6 = 396，所以396 ÷ 66 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 101,
+    "question": "420 ÷ 70 = ?",
+    "answer": "6",
+    "explanation": "70 × 6 = 420，所以420 ÷ 70 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 102,
+    "question": "432 ÷ 72 = ?",
+    "answer": "6",
+    "explanation": "72 × 6 = 432，所以432 ÷ 72 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 103,
+    "question": "480 ÷ 80 = ?",
+    "answer": "6",
+    "explanation": "80 × 6 = 480，所以480 ÷ 80 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 104,
+    "question": "174 ÷ 29 = ?",
+    "answer": "6",
+    "explanation": "29 × 6 = 174，所以174 ÷ 29 = 6",
+    "difficulty": "中等"
+  },
+  {
+    "id": 105,
+    "question": "189 ÷ 27 = ?",
+    "answer": "7",
+    "explanation": "27 × 7 = 189，所以189 ÷ 27 = 7",
+    "difficulty": "简单"
+  },
+  {
+    "id": 106,
+    "question": "203 ÷ 29 = ?",
+    "answer": "7",
+    "explanation": "29 × 7 = 203，所以203 ÷ 29 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 107,
+    "question": "217 ÷ 31 = ?",
+    "answer": "7",
+    "explanation": "31 × 7 = 217，所以217 ÷ 31 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 108,
+    "question": "232 ÷ 29 = ?",
+    "answer": "8",
+    "explanation": "29 × 8 = 232，所以232 ÷ 29 = 8",
+    "difficulty": "中等"
+  },
+  {
+    "id": 109,
+    "question": "246 ÷ 41 = ?",
+    "answer": "6",
+    "explanation": "41 × 6 = 246，所以246 ÷ 41 = 6",
+    "difficulty": "中等"
+  },
+  {
+    "id": 110,
+    "question": "261 ÷ 29 = ?",
+    "answer": "9",
+    "explanation": "29 × 9 = 261，所以261 ÷ 29 = 9",
+    "difficulty": "中等"
+  },
+  {
+    "id": 111,
+    "question": "279 ÷ 31 = ?",
+    "answer": "9",
+    "explanation": "31 × 9 = 279，所以279 ÷ 31 = 9",
+    "difficulty": "中等"
+  },
+  {
+    "id": 112,
+    "question": "290 ÷ 58 = ?",
+    "answer": "5",
+    "explanation": "58 × 5 = 290，所以290 ÷ 58 = 5",
+    "difficulty": "中等"
+  },
+  {
+    "id": 113,
+    "question": "306 ÷ 51 = ?",
+    "answer": "6",
+    "explanation": "51 × 6 = 306，所以306 ÷ 51 = 6",
+    "difficulty": "中等"
+  },
+  {
+    "id": 114,
+    "question": "319 ÷ 29 = ?",
+    "answer": "11",
+    "explanation": "29 × 11 = 319，所以319 ÷ 29 = 11",
+    "difficulty": "中等"
+  },
+  {
+    "id": 115,
+    "question": "333 ÷ 37 = ?",
+    "answer": "9",
+    "explanation": "37 × 9 = 333，所以333 ÷ 37 = 9",
+    "difficulty": "中等"
+  },
+  {
+    "id": 116,
+    "question": "348 ÷ 58 = ?",
+    "answer": "6",
+    "explanation": "58 × 6 = 348，所以348 ÷ 58 = 6",
+    "difficulty": "中等"
+  },
+  {
+    "id": 117,
+    "question": "364 ÷ 52 = ?",
+    "answer": "7",
+    "explanation": "52 × 7 = 364，所以364 ÷ 52 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 118,
+    "question": "377 ÷ 29 = ?",
+    "answer": "13",
+    "explanation": "29 × 13 = 377，所以377 ÷ 29 = 13",
+    "difficulty": "中等"
+  },
+  {
+    "id": 119,
+    "question": "392 ÷ 56 = ?",
+    "answer": "7",
+    "explanation": "56 × 7 = 392，所以392 ÷ 56 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 120,
+    "question": "72 ÷ 8 = ?",
+    "answer": "9",
+    "explanation": "8 × 9 = 72，所以72 ÷ 8 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 121,
+    "question": "54 ÷ 6 = ?",
+    "answer": "9",
+    "explanation": "6 × 9 = 54，所以54 ÷ 6 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 122,
+    "question": "48 ÷ 4 = ?",
+    "answer": "12",
+    "explanation": "4 × 12 = 48，所以48 ÷ 4 = 12",
+    "difficulty": "简单"
+  },
+  {
+    "id": 123,
+    "question": "63 ÷ 7 = ?",
+    "answer": "9",
+    "explanation": "7 × 9 = 63，所以63 ÷ 7 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 124,
+    "question": "81 ÷ 9 = ?",
+    "answer": "9",
+    "explanation": "9 × 9 = 81，所以81 ÷ 9 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 125,
+    "question": "96 ÷ 8 = ?",
+    "answer": "12",
+    "explanation": "8 × 12 = 96，所以96 ÷ 8 = 12",
+    "difficulty": "简单"
+  },
+  {
+    "id": 126,
+    "question": "64 ÷ 4 = ?",
+    "answer": "16",
+    "explanation": "4 × 16 = 64，所以64 ÷ 4 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 127,
+    "question": "45 ÷ 5 = ?",
+    "answer": "9",
+    "explanation": "5 × 9 = 45，所以45 ÷ 5 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 128,
+    "question": "36 ÷ 3 = ?",
+    "answer": "12",
+    "explanation": "3 × 12 = 36，所以36 ÷ 3 = 12",
+    "difficulty": "简单"
+  },
+  {
+    "id": 129,
+    "question": "56 ÷ 7 = ?",
+    "answer": "8",
+    "explanation": "7 × 8 = 56，所以56 ÷ 7 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 130,
+    "question": "84 ÷ 6 = ?",
+    "answer": "14",
+    "explanation": "6 × 14 = 84，所以84 ÷ 6 = 14",
+    "difficulty": "简单"
+  },
+  {
+    "id": 131,
+    "question": "75 ÷ 5 = ?",
+    "answer": "15",
+    "explanation": "5 × 15 = 75，所以75 ÷ 5 = 15",
+    "difficulty": "简单"
+  },
+  {
+    "id": 132,
+    "question": "88 ÷ 8 = ?",
+    "answer": "11",
+    "explanation": "8 × 11 = 88，所以88 ÷ 8 = 11",
+    "difficulty": "简单"
+  },
+  {
+    "id": 133,
+    "question": "99 ÷ 9 = ?",
+    "answer": "11",
+    "explanation": "9 × 11 = 99，所以99 ÷ 9 = 11",
+    "difficulty": "简单"
+  },
+  {
+    "id": 134,
+    "question": "42 ÷ 3 = ?",
+    "answer": "14",
+    "explanation": "3 × 14 = 42，所以42 ÷ 3 = 14",
+    "difficulty": "简单"
+  },
+  {
+    "id": 135,
+    "question": "78 ÷ 6 = ?",
+    "answer": "13",
+    "explanation": "6 × 13 = 78，所以78 ÷ 6 = 13",
+    "difficulty": "简单"
+  },
+  {
+    "id": 136,
+    "question": "23 × 4 = ?",
+    "answer": "92",
+    "explanation": "20 × 4 = 80，3 × 4 = 12，80 + 12 = 92",
+    "difficulty": "简单"
+  },
+  {
+    "id": 137,
+    "question": "45 × 6 = ?",
+    "answer": "270",
+    "explanation": "40 × 6 = 240，5 × 6 = 30，240 + 30 = 270",
+    "difficulty": "简单"
+  },
+  {
+    "id": 138,
+    "question": "37 × 5 = ?",
+    "answer": "185",
+    "explanation": "30 × 5 = 150，7 × 5 = 35，150 + 35 = 185",
+    "difficulty": "简单"
+  },
+  {
+    "id": 139,
+    "question": "68 × 3 = ?",
+    "answer": "204",
+    "explanation": "60 × 3 = 180，8 × 3 = 24，180 + 24 = 204",
+    "difficulty": "简单"
+  },
+  {
+    "id": 140,
+    "question": "52 × 7 = ?",
+    "answer": "364",
+    "explanation": "50 × 7 = 350，2 × 7 = 14，350 + 14 = 364",
+    "difficulty": "简单"
+  },
+  {
+    "id": 141,
+    "question": "79 × 8 = ?",
+    "answer": "632",
+    "explanation": "70 × 8 = 560，9 × 8 = 72，560 + 72 = 632",
+    "difficulty": "简单"
+  },
+  {
+    "id": 142,
+    "question": "84 × 9 = ?",
+    "answer": "756",
+    "explanation": "80 × 9 = 720，4 × 9 = 36，720 + 36 = 756",
+    "difficulty": "简单"
+  },
+  {
+    "id": 143,
+    "question": "63 × 4 = ?",
+    "answer": "252",
+    "explanation": "60 × 4 = 240，3 × 4 = 12，240 + 12 = 252",
+    "difficulty": "简单"
+  },
+  {
+    "id": 144,
+    "question": "91 × 5 = ?",
+    "answer": "455",
+    "explanation": "90 × 5 = 450，1 × 5 = 5，450 + 5 = 455",
+    "difficulty": "简单"
+  },
+  {
+    "id": 145,
+    "question": "76 × 6 = ?",
+    "answer": "456",
+    "explanation": "70 × 6 = 420，6 × 6 = 36，420 + 36 = 456",
+    "difficulty": "简单"
+  },
+  {
+    "id": 146,
+    "question": "58 × 7 = ?",
+    "answer": "406",
+    "explanation": "50 × 7 = 350，8 × 7 = 56，350 + 56 = 406",
+    "difficulty": "简单"
+  },
+  {
+    "id": 147,
+    "question": "34 × 9 = ?",
+    "answer": "306",
+    "explanation": "30 × 9 = 270，4 × 9 = 36，270 + 36 = 306",
+    "difficulty": "简单"
+  },
+  {
+    "id": 148,
+    "question": "27 × 8 = ?",
+    "answer": "216",
+    "explanation": "20 × 8 = 160，7 × 8 = 56，160 + 56 = 216",
+    "difficulty": "简单"
+  },
+  {
+    "id": 149,
+    "question": "49 × 6 = ?",
+    "answer": "294",
+    "explanation": "40 × 6 = 240，9 × 6 = 54，240 + 54 = 294",
+    "difficulty": "简单"
+  },
+  {
+    "id": 150,
+    "question": "82 × 3 = ?",
+    "answer": "246",
+    "explanation": "80 × 3 = 240，2 × 3 = 6，240 + 6 = 246",
+    "difficulty": "简单"
+  },
+  {
+    "id": 151,
+    "question": "95 × 4 = ?",
+    "answer": "380",
+    "explanation": "90 × 4 = 360，5 × 4 = 20，360 + 20 = 380",
+    "difficulty": "简单"
+  },
+  {
+    "id": 152,
+    "question": "18 × 6 = ?",
+    "answer": "108",
+    "explanation": "10 × 6 = 60，8 × 6 = 48，60 + 48 = 108",
+    "difficulty": "简单"
+  },
+  {
+    "id": 153,
+    "question": "29 × 7 = ?",
+    "answer": "203",
+    "explanation": "20 × 7 = 140，9 × 7 = 63，140 + 63 = 203",
+    "difficulty": "简单"
+  },
+  {
+    "id": 154,
+    "question": "35 × 8 = ?",
+    "answer": "280",
+    "explanation": "30 × 8 = 240，5 × 8 = 40，240 + 40 = 280",
+    "difficulty": "简单"
+  },
+  {
+    "id": 155,
+    "question": "46 × 5 = ?",
+    "answer": "230",
+    "explanation": "40 × 5 = 200，6 × 5 = 30，200 + 30 = 230",
+    "difficulty": "简单"
+  },
+  {
+    "id": 156,
+    "question": "57 × 9 = ?",
+    "answer": "513",
+    "explanation": "50 × 9 = 450，7 × 9 = 63，450 + 63 = 513",
+    "difficulty": "简单"
+  },
+  {
+    "id": 157,
+    "question": "68 × 4 = ?",
+    "answer": "272",
+    "explanation": "60 × 4 = 240，8 × 4 = 32，240 + 32 = 272",
+    "difficulty": "简单"
+  },
+  {
+    "id": 158,
+    "question": "73 × 7 = ?",
+    "answer": "511",
+    "explanation": "70 × 7 = 490，3 × 7 = 21，490 + 21 = 511",
+    "difficulty": "简单"
+  },
+  {
+    "id": 159,
+    "question": "82 × 6 = ?",
+    "answer": "492",
+    "explanation": "80 × 6 = 480，2 × 6 = 12，480 + 12 = 492",
+    "difficulty": "简单"
+  },
+  {
+    "id": 160,
+    "question": "94 × 5 = ?",
+    "answer": "470",
+    "explanation": "90 × 5 = 450，4 × 5 = 20，450 + 20 = 470",
+    "difficulty": "简单"
+  },
+  {
+    "id": 161,
+    "question": "38 × 9 = ?",
+    "answer": "342",
+    "explanation": "30 × 9 = 270，8 × 9 = 72，270 + 72 = 342",
+    "difficulty": "简单"
+  },
+  {
+    "id": 162,
+    "question": "49 × 8 = ?",
+    "answer": "392",
+    "explanation": "40 × 8 = 320，9 × 8 = 72，320 + 72 = 392",
+    "difficulty": "简单"
+  },
+  {
+    "id": 163,
+    "question": "55 × 7 = ?",
+    "answer": "385",
+    "explanation": "50 × 7 = 350，5 × 7 = 35，350 + 35 = 385",
+    "difficulty": "简单"
+  },
+  {
+    "id": 164,
+    "question": "61 × 6 = ?",
+    "answer": "366",
+    "explanation": "60 × 6 = 360，1 × 6 = 6，360 + 6 = 366",
+    "difficulty": "简单"
+  },
+  {
+    "id": 165,
+    "question": "77 × 5 = ?",
+    "answer": "385",
+    "explanation": "70 × 5 = 350，7 × 5 = 35，350 + 35 = 385",
+    "difficulty": "简单"
+  },
+  {
+    "id": 166,
+    "question": "83 × 4 = ?",
+    "answer": "332",
+    "explanation": "80 × 4 = 320，3 × 4 = 12，320 + 12 = 332",
+    "difficulty": "简单"
+  },
+  {
+    "id": 167,
+    "question": "92 × 3 = ?",
+    "answer": "276",
+    "explanation": "90 × 3 = 270，2 × 3 = 6，270 + 6 = 276",
+    "difficulty": "简单"
+  },
+  {
+    "id": 168,
+    "question": "123 × 3 = ?",
+    "answer": "369",
+    "explanation": "100 × 3 = 300，20 × 3 = 60，3 × 3 = 9，300 + 60 + 9 = 369",
+    "difficulty": "简单"
+  },
+  {
+    "id": 169,
+    "question": "245 × 4 = ?",
+    "answer": "980",
+    "explanation": "200 × 4 = 800，40 × 4 = 160，5 × 4 = 20，800 + 160 + 20 = 980",
+    "difficulty": "简单"
+  },
+  {
+    "id": 170,
+    "question": "317 × 5 = ?",
+    "answer": "1585",
+    "explanation": "300 × 5 = 1500，10 × 5 = 50，7 × 5 = 35，1500 + 50 + 35 = 1585",
+    "difficulty": "简单"
+  },
+  {
+    "id": 171,
+    "question": "468 × 2 = ?",
+    "answer": "936",
+    "explanation": "400 × 2 = 800，60 × 2 = 120，8 × 2 = 16，800 + 120 + 16 = 936",
+    "difficulty": "简单"
+  },
+  {
+    "id": 172,
+    "question": "529 × 3 = ?",
+    "answer": "1587",
+    "explanation": "500 × 3 = 1500，20 × 3 = 60，9 × 3 = 27，1500 + 60 + 27 = 1587",
+    "difficulty": "简单"
+  },
+  {
+    "id": 173,
+    "question": "674 × 4 = ?",
+    "answer": "2696",
+    "explanation": "600 × 4 = 2400，70 × 4 = 280，4 × 4 = 16，2400 + 280 + 16 = 2696",
+    "difficulty": "简单"
+  },
+  {
+    "id": 174,
+    "question": "783 × 5 = ?",
+    "answer": "3915",
+    "explanation": "700 × 5 = 3500，80 × 5 = 400，3 × 5 = 15，3500 + 400 + 15 = 3915",
+    "difficulty": "中等"
+  },
+  {
+    "id": 175,
+    "question": "896 × 6 = ?",
+    "answer": "5376",
+    "explanation": "800 × 6 = 4800，90 × 6 = 540，6 × 6 = 36，4800 + 540 + 36 = 5376",
+    "difficulty": "中等"
+  },
+  {
+    "id": 176,
+    "question": "432 × 7 = ?",
+    "answer": "3024",
+    "explanation": "400 × 7 = 2800，30 × 7 = 210，2 × 7 = 14，2800 + 210 + 14 = 3024",
+    "difficulty": "中等"
+  },
+  {
+    "id": 177,
+    "question": "567 × 8 = ?",
+    "answer": "4536",
+    "explanation": "500 × 8 = 4000，60 × 8 = 480，7 × 8 = 56，4000 + 480 + 56 = 4536",
+    "difficulty": "中等"
+  },
+  {
+    "id": 178,
+    "question": "618 × 9 = ?",
+    "answer": "5562",
+    "explanation": "600 × 9 = 5400，10 × 9 = 90，8 × 9 = 72，5400 + 90 + 72 = 5562",
+    "difficulty": "中等"
+  },
+  {
+    "id": 179,
+    "question": "739 × 4 = ?",
+    "answer": "2956",
+    "explanation": "700 × 4 = 2800，30 × 4 = 120，9 × 4 = 36，2800 + 120 + 36 = 2956",
+    "difficulty": "简单"
+  },
+  {
+    "id": 180,
+    "question": "854 × 3 = ?",
+    "answer": "2562",
+    "explanation": "800 × 3 = 2400，50 × 3 = 150，4 × 3 = 12，2400 + 150 + 12 = 2562",
+    "difficulty": "简单"
+  },
+  {
+    "id": 181,
+    "question": "927 × 5 = ?",
+    "answer": "4635",
+    "explanation": "900 × 5 = 4500，20 × 5 = 100，7 × 5 = 35，4500 + 100 + 35 = 4635",
+    "difficulty": "中等"
+  },
+  {
+    "id": 182,
+    "question": "386 × 6 = ?",
+    "answer": "2316",
+    "explanation": "300 × 6 = 1800，80 × 6 = 480，6 × 6 = 36，1800 + 480 + 36 = 2316",
+    "difficulty": "中等"
+  },
+  {
+    "id": 183,
+    "question": "471 × 7 = ?",
+    "answer": "3297",
+    "explanation": "400 × 7 = 2800，70 × 7 = 490，1 × 7 = 7，2800 + 490 + 7 = 3297",
+    "difficulty": "中等"
+  },
+  {
+    "id": 184,
+    "question": "23 × 45 = ?",
+    "answer": "1035",
+    "explanation": "23 × 40 = 920，23 × 5 = 115，920 + 115 = 1035",
+    "difficulty": "中等"
+  },
+  {
+    "id": 185,
+    "question": "34 × 56 = ?",
+    "answer": "1904",
+    "explanation": "34 × 50 = 1700，34 × 6 = 204，1700 + 204 = 1904",
+    "difficulty": "中等"
+  },
+  {
+    "id": 186,
+    "question": "47 × 28 = ?",
+    "answer": "1316",
+    "explanation": "47 × 20 = 940，47 × 8 = 376，940 + 376 = 1316",
+    "difficulty": "中等"
+  },
+  {
+    "id": 187,
+    "question": "52 × 39 = ?",
+    "answer": "2028",
+    "explanation": "52 × 40 = 2080，减去 52 × 1 = 52，2080 - 52 = 2028",
+    "difficulty": "中等"
+  },
+  {
+    "id": 188,
+    "question": "68 × 74 = ?",
+    "answer": "5032",
+    "explanation": "68 × 70 = 4760，68 × 4 = 272，4760 + 272 = 5032",
+    "difficulty": "中等"
+  },
+  {
+    "id": 189,
+    "question": "75 × 63 = ?",
+    "answer": "4725",
+    "explanation": "75 × 60 = 4500，75 × 3 = 225，4500 + 225 = 4725",
+    "difficulty": "中等"
+  },
+  {
+    "id": 190,
+    "question": "81 × 92 = ?",
+    "answer": "7452",
+    "explanation": "81 × 90 = 7290，81 × 2 = 162，7290 + 162 = 7452",
+    "difficulty": "中等"
+  },
+  {
+    "id": 191,
+    "question": "96 × 57 = ?",
+    "answer": "5472",
+    "explanation": "96 × 50 = 4800，96 × 7 = 672，4800 + 672 = 5472",
+    "difficulty": "中等"
+  },
+  {
+    "id": 192,
+    "question": "42 × 85 = ?",
+    "answer": "3570",
+    "explanation": "42 × 80 = 3360，42 × 5 = 210，3360 + 210 = 3570",
+    "difficulty": "中等"
+  },
+  {
+    "id": 193,
+    "question": "58 × 69 = ?",
+    "answer": "4002",
+    "explanation": "58 × 70 = 4060，减去 58 × 1 = 58，4060 - 58 = 4002",
+    "difficulty": "中等"
+  },
+  {
+    "id": 194,
+    "question": "73 × 84 = ?",
+    "answer": "6132",
+    "explanation": "73 × 80 = 5840，73 × 4 = 292，5840 + 292 = 6132",
+    "difficulty": "中等"
+  },
+  {
+    "id": 195,
+    "question": "89 × 76 = ?",
+    "answer": "6764",
+    "explanation": "89 × 70 = 6230，89 × 6 = 534，6230 + 534 = 6764",
+    "difficulty": "中等"
+  },
+  {
+    "id": 196,
+    "question": "25 × 48 = ?",
+    "answer": "1200",
+    "explanation": "25 × 40 = 1000，25 × 8 = 200，1000 + 200 = 1200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 197,
+    "question": "36 × 79 = ?",
+    "answer": "2844",
+    "explanation": "36 × 80 = 2880，减去 36 × 1 = 36，2880 - 36 = 2844",
+    "difficulty": "中等"
+  },
+  {
+    "id": 198,
+    "question": "94 × 53 = ?",
+    "answer": "4982",
+    "explanation": "94 × 50 = 4700，94 × 3 = 282，4700 + 282 = 4982",
+    "difficulty": "中等"
+  },
+  {
+    "id": 199,
+    "question": "67 × 82 = ?",
+    "answer": "5494",
+    "explanation": "67 × 80 = 5360，67 × 2 = 134，5360 + 134 = 5494",
+    "difficulty": "中等"
+  },
+  {
+    "id": 200,
+    "question": "24 × 35 = ?",
+    "answer": "840",
+    "explanation": "24 × 30 = 720，24 × 5 = 120，720 + 120 = 840",
+    "difficulty": "中等"
+  },
+  {
+    "id": 201,
+    "question": "37 × 42 = ?",
+    "answer": "1554",
+    "explanation": "37 × 40 = 1480，37 × 2 = 74，1480 + 74 = 1554",
+    "difficulty": "中等"
+  },
+  {
+    "id": 202,
+    "question": "48 × 53 = ?",
+    "answer": "2544",
+    "explanation": "48 × 50 = 2400，48 × 3 = 144，2400 + 144 = 2544",
+    "difficulty": "中等"
+  },
+  {
+    "id": 203,
+    "question": "59 × 64 = ?",
+    "answer": "3776",
+    "explanation": "59 × 60 = 3540，59 × 4 = 236，3540 + 236 = 3776",
+    "difficulty": "中等"
+  },
+  {
+    "id": 204,
+    "question": "63 × 72 = ?",
+    "answer": "4536",
+    "explanation": "63 × 70 = 4410，63 × 2 = 126，4410 + 126 = 4536",
+    "difficulty": "中等"
+  },
+  {
+    "id": 205,
+    "question": "74 × 81 = ?",
+    "answer": "5994",
+    "explanation": "74 × 80 = 5920，74 × 1 = 74，5920 + 74 = 5994",
+    "difficulty": "中等"
+  },
+  {
+    "id": 206,
+    "question": "85 × 93 = ?",
+    "answer": "7905",
+    "explanation": "85 × 90 = 7650，85 × 3 = 255，7650 + 255 = 7905",
+    "difficulty": "中等"
+  },
+  {
+    "id": 207,
+    "question": "92 × 67 = ?",
+    "answer": "6164",
+    "explanation": "92 × 60 = 5520，92 × 7 = 644，5520 + 644 = 6164",
+    "difficulty": "中等"
+  },
+  {
+    "id": 208,
+    "question": "26 × 49 = ?",
+    "answer": "1274",
+    "explanation": "26 × 50 = 1300，减去 26 × 1 = 26，1300 - 26 = 1274",
+    "difficulty": "中等"
+  },
+  {
+    "id": 209,
+    "question": "38 × 57 = ?",
+    "answer": "2166",
+    "explanation": "38 × 50 = 1900，38 × 7 = 266，1900 + 266 = 2166",
+    "difficulty": "中等"
+  },
+  {
+    "id": 210,
+    "question": "43 × 68 = ?",
+    "answer": "2924",
+    "explanation": "43 × 60 = 2580，43 × 8 = 344，2580 + 344 = 2924",
+    "difficulty": "中等"
+  },
+  {
+    "id": 211,
+    "question": "57 × 79 = ?",
+    "answer": "4503",
+    "explanation": "57 × 80 = 4560，减去 57 × 1 = 57，4560 - 57 = 4503",
+    "difficulty": "中等"
+  },
+  {
+    "id": 212,
+    "question": "62 × 84 = ?",
+    "answer": "5208",
+    "explanation": "62 × 80 = 4960，62 × 4 = 248，4960 + 248 = 5208",
+    "difficulty": "中等"
+  },
+  {
+    "id": 213,
+    "question": "71 × 96 = ?",
+    "answer": "6816",
+    "explanation": "71 × 90 = 6390，71 × 6 = 426，6390 + 426 = 6816",
+    "difficulty": "中等"
+  },
+  {
+    "id": 214,
+    "question": "83 × 75 = ?",
+    "answer": "6225",
+    "explanation": "83 × 70 = 5810，83 × 5 = 415，5810 + 415 = 6225",
+    "difficulty": "中等"
+  },
+  {
+    "id": 215,
+    "question": "94 × 58 = ?",
+    "answer": "5452",
+    "explanation": "94 × 50 = 4700，94 × 8 = 752，4700 + 752 = 5452",
+    "difficulty": "中等"
+  },
+  {
+    "id": 216,
+    "question": "72 ÷ 9 = ?",
+    "answer": "8",
+    "explanation": "9 × 8 = 72，所以72 ÷ 9 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 217,
+    "question": "54 ÷ 9 = ?",
+    "answer": "6",
+    "explanation": "9 × 6 = 54，所以54 ÷ 9 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 218,
+    "question": "56 ÷ 8 = ?",
+    "answer": "7",
+    "explanation": "8 × 7 = 56，所以56 ÷ 8 = 7",
+    "difficulty": "简单"
+  },
+  {
+    "id": 219,
+    "question": "63 ÷ 9 = ?",
+    "answer": "7",
+    "explanation": "9 × 7 = 63，所以63 ÷ 9 = 7",
+    "difficulty": "简单"
+  },
+  {
+    "id": 220,
+    "question": "48 ÷ 6 = ?",
+    "answer": "8",
+    "explanation": "6 × 8 = 48，所以48 ÷ 6 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 221,
+    "question": "81 ÷ 9 = ?",
+    "answer": "9",
+    "explanation": "9 × 9 = 81，所以81 ÷ 9 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 222,
+    "question": "45 ÷ 9 = ?",
+    "answer": "5",
+    "explanation": "9 × 5 = 45，所以45 ÷ 9 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 223,
+    "question": "64 ÷ 8 = ?",
+    "answer": "8",
+    "explanation": "8 × 8 = 64，所以64 ÷ 8 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 224,
+    "question": "42 ÷ 7 = ?",
+    "answer": "6",
+    "explanation": "7 × 6 = 42，所以42 ÷ 7 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 225,
+    "question": "36 ÷ 6 = ?",
+    "answer": "6",
+    "explanation": "6 × 6 = 36，所以36 ÷ 6 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 226,
+    "question": "27 ÷ 9 = ?",
+    "answer": "3",
+    "explanation": "9 × 3 = 27，所以27 ÷ 9 = 3",
+    "difficulty": "简单"
+  },
+  {
+    "id": 227,
+    "question": "35 ÷ 7 = ?",
+    "answer": "5",
+    "explanation": "7 × 5 = 35，所以35 ÷ 7 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 228,
+    "question": "49 ÷ 7 = ?",
+    "answer": "7",
+    "explanation": "7 × 7 = 49，所以49 ÷ 7 = 7",
+    "difficulty": "简单"
+  },
+  {
+    "id": 229,
+    "question": "28 ÷ 7 = ?",
+    "answer": "4",
+    "explanation": "7 × 4 = 28，所以28 ÷ 7 = 4",
+    "difficulty": "简单"
+  },
+  {
+    "id": 230,
+    "question": "32 ÷ 8 = ?",
+    "answer": "4",
+    "explanation": "8 × 4 = 32，所以32 ÷ 8 = 4",
+    "difficulty": "简单"
+  },
+  {
+    "id": 231,
+    "question": "40 ÷ 8 = ?",
+    "answer": "5",
+    "explanation": "8 × 5 = 40，所以40 ÷ 8 = 5",
+    "difficulty": "简单"
+  },
+  {
+    "id": 232,
+    "question": "72 ÷ 12 = ?",
+    "answer": "6",
+    "explanation": "12 × 6 = 72，所以72 ÷ 12 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 233,
+    "question": "84 ÷ 14 = ?",
+    "answer": "6",
+    "explanation": "14 × 6 = 84，所以84 ÷ 14 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 234,
+    "question": "96 ÷ 16 = ?",
+    "answer": "6",
+    "explanation": "16 × 6 = 96，所以96 ÷ 16 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 235,
+    "question": "108 ÷ 18 = ?",
+    "answer": "6",
+    "explanation": "18 × 6 = 108，所以108 ÷ 18 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 236,
+    "question": "120 ÷ 15 = ?",
+    "answer": "8",
+    "explanation": "15 × 8 = 120，所以120 ÷ 15 = 8",
+    "difficulty": "简单"
+  },
+  {
+    "id": 237,
+    "question": "132 ÷ 12 = ?",
+    "answer": "11",
+    "explanation": "12 × 11 = 132，所以132 ÷ 12 = 11",
+    "difficulty": "简单"
+  },
+  {
+    "id": 238,
+    "question": "144 ÷ 16 = ?",
+    "answer": "9",
+    "explanation": "16 × 9 = 144，所以144 ÷ 16 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 239,
+    "question": "156 ÷ 13 = ?",
+    "answer": "12",
+    "explanation": "13 × 12 = 156，所以156 ÷ 13 = 12",
+    "difficulty": "简单"
+  },
+  {
+    "id": 240,
+    "question": "168 ÷ 14 = ?",
+    "answer": "12",
+    "explanation": "14 × 12 = 168，所以168 ÷ 14 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 241,
+    "question": "180 ÷ 15 = ?",
+    "answer": "12",
+    "explanation": "15 × 12 = 180，所以180 ÷ 15 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 242,
+    "question": "192 ÷ 16 = ?",
+    "answer": "12",
+    "explanation": "16 × 12 = 192，所以192 ÷ 16 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 243,
+    "question": "204 ÷ 17 = ?",
+    "answer": "12",
+    "explanation": "17 × 12 = 204，所以204 ÷ 17 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 244,
+    "question": "216 ÷ 18 = ?",
+    "answer": "12",
+    "explanation": "18 × 12 = 216，所以216 ÷ 18 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 245,
+    "question": "228 ÷ 19 = ?",
+    "answer": "12",
+    "explanation": "19 × 12 = 228，所以228 ÷ 19 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 246,
+    "question": "240 ÷ 20 = ?",
+    "answer": "12",
+    "explanation": "20 × 12 = 240，所以240 ÷ 20 = 12",
+    "difficulty": "简单"
+  },
+  {
+    "id": 247,
+    "question": "252 ÷ 21 = ?",
+    "answer": "12",
+    "explanation": "21 × 12 = 252，所以252 ÷ 21 = 12",
+    "difficulty": "中等"
+  },
+  {
+    "id": 248,
+    "question": "20 × 30 = ?",
+    "answer": "600",
+    "explanation": "先算 2 × 3 = 6，再在末尾添两个0，得 600",
+    "difficulty": "简单"
+  },
+  {
+    "id": 249,
+    "question": "40 × 50 = ?",
+    "answer": "2000",
+    "explanation": "先算 4 × 5 = 20，再在末尾添两个0，得 2000",
+    "difficulty": "简单"
+  },
+  {
+    "id": 250,
+    "question": "60 × 70 = ?",
+    "answer": "4200",
+    "explanation": "先算 6 × 7 = 42，再在末尾添两个0，得 4200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 251,
+    "question": "80 × 90 = ?",
+    "answer": "7200",
+    "explanation": "先算 8 × 9 = 72，再在末尾添两个0，得 7200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 252,
+    "question": "10 × 40 = ?",
+    "answer": "400",
+    "explanation": "先算 1 × 4 = 4，再在末尾添两个0，得 400",
+    "difficulty": "简单"
+  },
+  {
+    "id": 253,
+    "question": "50 × 20 = ?",
+    "answer": "1000",
+    "explanation": "先算 5 × 2 = 10，再在末尾添两个0，得 1000",
+    "difficulty": "简单"
+  },
+  {
+    "id": 254,
+    "question": "30 × 80 = ?",
+    "answer": "2400",
+    "explanation": "先算 3 × 8 = 24，再在末尾添两个0，得 2400",
+    "difficulty": "简单"
+  },
+  {
+    "id": 255,
+    "question": "70 × 60 = ?",
+    "answer": "4200",
+    "explanation": "先算 7 × 6 = 42，再在末尾添两个0，得 4200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 256,
+    "question": "90 × 10 = ?",
+    "answer": "900",
+    "explanation": "先算 9 × 1 = 9，再在末尾添两个0，得 900",
+    "difficulty": "简单"
+  },
+  {
+    "id": 257,
+    "question": "40 × 80 = ?",
+    "answer": "3200",
+    "explanation": "先算 4 × 8 = 32，再在末尾添两个0，得 3200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 258,
+    "question": "20 × 90 = ?",
+    "answer": "1800",
+    "explanation": "先算 2 × 9 = 18，再在末尾添两个0，得 1800",
+    "difficulty": "简单"
+  },
+  {
+    "id": 259,
+    "question": "50 × 60 = ?",
+    "answer": "3000",
+    "explanation": "先算 5 × 6 = 30，再在末尾添两个0，得 3000",
+    "difficulty": "简单"
+  },
+  {
+    "id": 260,
+    "question": "30 × 50 = ?",
+    "answer": "1500",
+    "explanation": "先算 3 × 5 = 15，再在末尾添两个0，得 1500",
+    "difficulty": "简单"
+  },
+  {
+    "id": 261,
+    "question": "80 × 70 = ?",
+    "answer": "5600",
+    "explanation": "先算 8 × 7 = 56，再在末尾添两个0，得 5600",
+    "difficulty": "简单"
+  },
+  {
+    "id": 262,
+    "question": "90 × 40 = ?",
+    "answer": "3600",
+    "explanation": "先算 9 × 4 = 36，再在末尾添两个0，得 3600",
+    "difficulty": "简单"
+  },
+  {
+    "id": 263,
+    "question": "60 × 20 = ?",
+    "answer": "1200",
+    "explanation": "先算 6 × 2 = 12，再在末尾添两个0，得 1200",
+    "difficulty": "简单"
+  },
+  {
+    "id": 264,
+    "question": "800 ÷ 20 = ?",
+    "answer": "40",
+    "explanation": "先算 8 ÷ 2 = 4，再在末尾添一个0，得 40",
+    "difficulty": "简单"
+  },
+  {
+    "id": 265,
+    "question": "600 ÷ 30 = ?",
+    "answer": "20",
+    "explanation": "先算 6 ÷ 3 = 2，再在末尾添一个0，得 20",
+    "difficulty": "简单"
+  },
+  {
+    "id": 266,
+    "question": "1200 ÷ 40 = ?",
+    "answer": "30",
+    "explanation": "先算 12 ÷ 4 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 267,
+    "question": "1500 ÷ 50 = ?",
+    "answer": "30",
+    "explanation": "先算 15 ÷ 5 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 268,
+    "question": "1800 ÷ 60 = ?",
+    "answer": "30",
+    "explanation": "先算 18 ÷ 6 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 269,
+    "question": "2100 ÷ 70 = ?",
+    "answer": "30",
+    "explanation": "先算 21 ÷ 7 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 270,
+    "question": "2400 ÷ 80 = ?",
+    "answer": "30",
+    "explanation": "先算 24 ÷ 8 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 271,
+    "question": "2700 ÷ 90 = ?",
+    "answer": "30",
+    "explanation": "先算 27 ÷ 9 = 3，再在末尾添一个0，得 30",
+    "difficulty": "简单"
+  },
+  {
+    "id": 272,
+    "question": "3000 ÷ 50 = ?",
+    "answer": "60",
+    "explanation": "先算 30 ÷ 5 = 6，再在末尾添一个0，得 60",
+    "difficulty": "简单"
+  },
+  {
+    "id": 273,
+    "question": "4000 ÷ 80 = ?",
+    "answer": "50",
+    "explanation": "先算 40 ÷ 8 = 5，再在末尾添一个0，得 50",
+    "difficulty": "简单"
+  },
+  {
+    "id": 274,
+    "question": "5000 ÷ 20 = ?",
+    "answer": "250",
+    "explanation": "先算 50 ÷ 2 = 25，再在末尾添一个0，得 250",
+    "difficulty": "中等"
+  },
+  {
+    "id": 275,
+    "question": "3600 ÷ 60 = ?",
+    "answer": "60",
+    "explanation": "先算 36 ÷ 6 = 6，再在末尾添一个0，得 60",
+    "difficulty": "简单"
+  },
+  {
+    "id": 276,
+    "question": "4800 ÷ 40 = ?",
+    "answer": "120",
+    "explanation": "先算 48 ÷ 4 = 12，再在末尾添一个0，得 120",
+    "difficulty": "中等"
+  },
+  {
+    "id": 277,
+    "question": "7200 ÷ 80 = ?",
+    "answer": "90",
+    "explanation": "先算 72 ÷ 8 = 9，再在末尾添一个0，得 90",
+    "difficulty": "中等"
+  },
+  {
+    "id": 278,
+    "question": "9000 ÷ 30 = ?",
+    "answer": "300",
+    "explanation": "先算 90 ÷ 3 = 30，再在末尾添一个0，得 300",
+    "difficulty": "中等"
+  },
+  {
+    "id": 279,
+    "question": "10000 ÷ 50 = ?",
+    "answer": "200",
+    "explanation": "先算 100 ÷ 5 = 20，再在末尾添一个0，得 200",
+    "difficulty": "中等"
+  },
+  {
+    "id": 280,
+    "question": "甲、乙两人同时从A、B两地相向而行，甲每小时走6千米，乙每小时走4千米，相遇时甲比乙多走8千米。A、B两地相距多少千米？",
+    "answer": "40",
+    "explanation": "相遇时间：8÷(6-4)=4小时，两地距离：(6+4)×4=40千米。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 281,
+    "question": "小明有若干张卡片，如果每行贴8张，可以贴满5行；如果每行贴10张，可以贴满几行？",
+    "answer": "4",
+    "explanation": "总张数：8×5=40张，每行10张可贴：40÷10=4行。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 282,
+    "question": "一个长方形的周长是36厘米，长是宽的2倍，长方形的面积是多少平方厘米？",
+    "answer": "72",
+    "explanation": "宽：36÷2÷(2+1)=6厘米，长：6×2=12厘米，面积：12×6=72平方厘米。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 283,
+    "question": "甲、乙两人共有图书120本，甲的图书比乙的2倍少15本，甲有多少本图书？",
+    "answer": "75",
+    "explanation": "乙的本数：(120+15)÷(2+1)=45本，甲的本数：45×2-15=75本。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 284,
+    "question": "一个数减去5，再乘以3，结果是21，这个数是多少？",
+    "answer": "12",
+    "explanation": "倒推：21÷3=7，7+5=12。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 285,
+    "question": "一桶油连桶重28千克，用去一半油后，连桶重15千克。桶重多少千克？",
+    "answer": "2",
+    "explanation": "油的一半重量：28-15=13千克，油总重：13×2=26千克，桶重：28-26=2千克。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 286,
+    "question": "小明从一楼到三楼用了4分钟，照这样计算，从一楼到六楼需要几分钟？",
+    "answer": "10",
+    "explanation": "每层用时：4÷(3-1)=2分钟，到六楼用时：2×(6-1)=10分钟。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 287,
+    "question": "一列火车通过一座长800米的桥需要50秒，用同样的速度通过一座长400米的桥需要30秒。火车的速度是多少米/秒？",
+    "answer": "20",
+    "explanation": "通过两桥的时间差是因为桥长差400米，速度=400÷(50-30)=20米/秒。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 288,
+    "question": "小明和小红共有邮票100张，如果小明给小红10张，两人邮票就一样多。小明原来有多少张？",
+    "answer": "60",
+    "explanation": "小明比小红多20张，小明张数=(100+20)÷2=60张。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 289,
+    "question": "鸡兔同笼，共有头30个，脚84只，鸡有多少只？",
+    "answer": "18",
+    "explanation": "假设全是兔，脚有120只，多出36只，每只鸡换兔少2只脚，鸡数=36÷2=18只。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 290,
+    "question": "一个班学生去划船，如果每船坐6人，则多出4人；如果每船坐8人，则少2人。至少需要几条船？",
+    "answer": "3",
+    "explanation": "船数=(4+2)÷(8-6)=3条。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 291,
+    "question": "小明从家到学校，如果每分钟走50米，迟到8分钟；如果每分钟走60米，早到5分钟。家到学校有多少米？",
+    "answer": "3900",
+    "explanation": "计划时间=(50×8+60×5)÷(60-50)=70分钟，距离=50×(70+8)=3900米。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 292,
+    "question": "甲、乙两数和是90，甲数比乙数多10，甲数是多少？",
+    "answer": "50",
+    "explanation": "甲数=(90+10)÷2=50。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 293,
+    "question": "一根木头锯成4段需要12分钟，锯成8段需要几分钟？",
+    "answer": "28",
+    "explanation": "锯一次需12÷(4-1)=4分钟，锯8段需锯7次，时间=4×7=28分钟。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 294,
+    "question": "一桶水，第一次倒出总量的一半少4升，第二次倒出余下的一半多2升，还剩6升。桶中原有多少水？",
+    "answer": "24",
+    "explanation": "倒推：第二次倒前有(6-2)×2=8升，第一次倒前有(8+4)×2=24升。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 295,
+    "question": "小明和小刚共有玻璃球80个，小明给小刚10个后，小刚比小明多4个。小明原来有多少个？",
+    "answer": "47",
+    "explanation": "给后小明=(80-4)÷2=38，原来小明=38+10=48。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 296,
+    "question": "一个数除以6余2，除以8余4，这个数最小是多少？",
+    "answer": "20",
+    "explanation": "满足条件的数加4能同时被6和8整除，最小公倍数为24，所以这个数为24-4=20。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 297,
+    "question": "3箱苹果和5箱梨共重150千克，1箱苹果和1箱梨共重34千克，一箱苹果重多少千克？",
+    "answer": "20",
+    "explanation": "3苹果+5梨=150，1苹果+1梨=34，则3苹果+3梨=102，两式相减得2梨=48，梨=24，苹果=10。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 298,
+    "question": "甲、乙两人同时从相距2400米的两地相向而行，甲每分钟走70米，乙每分钟走50米，相遇时甲比乙多走了多少米？",
+    "answer": "400",
+    "explanation": "相遇时间=2400÷(70+50)=20分钟，甲比乙多走(70-50)×20=400米。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 299,
+    "question": "某数加上9，乘以9，减去9，除以9，结果还是9，这个数是多少？",
+    "answer": "1",
+    "explanation": "倒推：9×9=81，81+9=90，90÷9=10，10-9=1。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 300,
+    "question": "将一根绳子对折三次后，每段长5米，这根绳子原来长多少米？",
+    "answer": "40",
+    "explanation": "对折三次后是8段，原长=5×8=40米。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 301,
+    "question": "一个班有学生48人，男生比女生多6人，女生有多少人？",
+    "answer": "21",
+    "explanation": "女生人数=(48-6)÷2=21人。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 302,
+    "question": "哥哥和弟弟共有60元，哥哥给弟弟8元后，弟弟比哥哥多2元。哥哥原来有多少元？",
+    "answer": "39",
+    "explanation": "给后哥哥=(60-2)÷2=29，原来哥哥=29+8=37。",
+    "difficulty": "困难"
+  },
+  {
+    "id": 303,
+    "question": "一个正方形，边长增加3厘米，面积增加39平方厘米，原来正方形的边长是多少厘米？",
+    "answer": "5",
+    "explanation": "增加部分是两个长方形和一个小正方形，设原边长为a，则(a+3)² - a² = 39，6a+9=39，a=5。",
+    "difficulty": "简单"
+  },
+  {
+    "id": 304,
+    "question": "计算：15 + 27 - 8 = ?",
+    "answer": "34",
+    "explanation": "15 + 27 = 42，42 - 8 = 34",
+    "difficulty": "简单"
+  },
+  {
+    "id": 305,
+    "question": "计算：6 × 9 ÷ 3 = ?",
+    "answer": "18",
+    "explanation": "6 × 9 = 54，54 ÷ 3 = 18",
+    "difficulty": "简单"
+  },
+  {
+    "id": 306,
+    "question": "计算：50 - 16 + 24 = ?",
+    "answer": "58",
+    "explanation": "50 - 16 = 34，34 + 24 = 58",
+    "difficulty": "简单"
+  },
+  {
+    "id": 307,
+    "question": "计算：36 ÷ 4 × 2 = ?",
+    "answer": "18",
+    "explanation": "36 ÷ 4 = 9，9 × 2 = 18",
+    "difficulty": "简单"
+  },
+  {
+    "id": 308,
+    "question": "计算：8 × 3 + 12 ÷ 4 = ?",
+    "answer": "27",
+    "explanation": "先乘除：8 × 3 = 24，12 ÷ 4 = 3，再相加：24 + 3 = 27",
+    "difficulty": "简单"
+  },
+  {
+    "id": 309,
+    "question": "计算：40 ÷ 5 - 3 × 2 = ?",
+    "answer": "2",
+    "explanation": "先乘除：40 ÷ 5 = 8，3 × 2 = 6，再相减：8 - 6 = 2",
+    "difficulty": "简单"
+  },
+  {
+    "id": 310,
+    "question": "计算：(20 + 10) ÷ (7 - 2) = ?",
+    "answer": "6",
+    "explanation": "先括号内：20 + 10 = 30，7 - 2 = 5，30 ÷ 5 = 6",
+    "difficulty": "简单"
+  },
+  {
+    "id": 311,
+    "question": "计算：5 × 6 + 18 ÷ 3 = ?",
+    "answer": "36",
+    "explanation": "先乘除：5 × 6 = 30，18 ÷ 3 = 6，再相加：30 + 6 = 36",
+    "difficulty": "简单"
+  },
+  {
+    "id": 312,
+    "question": "计算：100 - 4 × 8 + 10 = ?",
+    "answer": "78",
+    "explanation": "先乘法：4 × 8 = 32，再从左到右：100 - 32 = 68，68 + 10 = 78",
+    "difficulty": "简单"
+  },
+  {
+    "id": 313,
+    "question": "计算：48 ÷ 6 + 5 × 4 = ?",
+    "answer": "28",
+    "explanation": "先乘除：48 ÷ 6 = 8，5 × 4 = 20，再相加：8 + 20 = 28",
+    "difficulty": "简单"
+  },
+  {
+    "id": 314,
+    "question": "计算：7 + 3 × 4 - 5 = ?",
+    "answer": "14",
+    "explanation": "先乘后加减：3 × 4 = 12，7 + 12 = 19，19 - 5 = 14",
+    "difficulty": "简单"
+  },
+  {
+    "id": 315,
+    "question": "计算：24 ÷ 6 + 9 × 2 = ?",
+    "answer": "22",
+    "explanation": "先乘除：24 ÷ 6 = 4，9 × 2 = 18，再相加：4 + 18 = 22",
+    "difficulty": "简单"
+  },
+  {
+    "id": 316,
+    "question": "计算：18 - 12 ÷ 3 + 5 = ?",
+    "answer": "19",
+    "explanation": "先除法：12 ÷ 3 = 4，再加减：18 - 4 = 14，14 + 5 = 19",
+    "difficulty": "简单"
+  },
+  {
+    "id": 317,
+    "question": "计算：(15 - 7) × 4 ÷ 2 = ?",
+    "answer": "16",
+    "explanation": "先括号：15 - 7 = 8，再乘除：8 × 4 = 32，32 ÷ 2 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 318,
+    "question": "计算：5 + 8 ÷ 2 × 3 = ?",
+    "answer": "17",
+    "explanation": "先乘除从左到右：8 ÷ 2 = 4，4 × 3 = 12，再相加：5 + 12 = 17",
+    "difficulty": "简单"
+  },
+  {
+    "id": 319,
+    "question": "计算：20 ÷ 4 × 3 - 6 = ?",
+    "answer": "9",
+    "explanation": "先乘除：20 ÷ 4 = 5，5 × 3 = 15，再减：15 - 6 = 9",
+    "difficulty": "简单"
+  },
+  {
+    "id": 320,
+    "question": "计算：9 × 3 - 16 ÷ 4 = ?",
+    "answer": "23",
+    "explanation": "先乘除：9 × 3 = 27，16 ÷ 4 = 4，再减：27 - 4 = 23",
+    "difficulty": "简单"
+  },
+  {
+    "id": 321,
+    "question": "计算：14 + 6 ÷ 3 × 5 = ?",
+    "answer": "24",
+    "explanation": "先乘除：6 ÷ 3 = 2，2 × 5 = 10，再加：14 + 10 = 24",
+    "difficulty": "简单"
+  },
+  {
+    "id": 322,
+    "question": "计算：30 - 5 × 4 + 18 ÷ 3 = ?",
+    "answer": "16",
+    "explanation": "先乘除：5 × 4 = 20，18 ÷ 3 = 6，再加减：30 - 20 = 10，10 + 6 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 323,
+    "question": "计算：56 ÷ 8 + 7 × 2 - 5 = ?",
+    "answer": "16",
+    "explanation": "先乘除：56 ÷ 8 = 7，7 × 2 = 14，再加减：7 + 14 = 21，21 - 5 = 16",
+    "difficulty": "简单"
+  },
+  {
+    "id": 324,
+    "question": "计算：120 ÷ (6 + 4) × 3 = ?",
+    "answer": "36",
+    "explanation": "先括号：6 + 4 = 10，再从左到右：120 ÷ 10 = 12，12 × 3 = 36",
+    "difficulty": "中等"
+  },
+  {
+    "id": 325,
+    "question": "计算：25 × 4 - 72 ÷ 8 + 15 = ?",
+    "answer": "106",
+    "explanation": "先乘除：25 × 4 = 100，72 ÷ 8 = 9，再加减：100 - 9 = 91，91 + 15 = 106",
+    "difficulty": "中等"
+  },
+  {
+    "id": 326,
+    "question": "计算：(48 - 12) ÷ 6 × 5 + 18 = ?",
+    "answer": "48",
+    "explanation": "先括号：48 - 12 = 36，再乘除：36 ÷ 6 = 6，6 × 5 = 30，再加：30 + 18 = 48",
+    "difficulty": "中等"
+  },
+  {
+    "id": 327,
+    "question": "计算：64 ÷ 8 × (7 - 3) + 20 = ?",
+    "answer": "52",
+    "explanation": "先括号：7 - 3 = 4，再乘除从左到右：64 ÷ 8 = 8，8 × 4 = 32，再加：32 + 20 = 52",
+    "difficulty": "中等"
+  },
+  {
+    "id": 328,
+    "question": "计算：150 ÷ 5 + 8 × 6 - 24 ÷ 3 = ?",
+    "answer": "70",
+    "explanation": "先乘除：150 ÷ 5 = 30，8 × 6 = 48，24 ÷ 3 = 8，再加减：30 + 48 = 78，78 - 8 = 70",
+    "difficulty": "中等"
+  },
+  {
+    "id": 329,
+    "question": "计算：39 - 15 ÷ 3 × 2 + 7 × 4 = ?",
+    "answer": "57",
+    "explanation": "先乘除：15 ÷ 3 = 5，5 × 2 = 10；7 × 4 = 28，再加减：39 - 10 = 29，29 + 28 = 57",
+    "difficulty": "中等"
+  },
+  {
+    "id": 330,
+    "question": "计算：18 × 4 ÷ (12 - 6) + 35 ÷ 7 = ?",
+    "answer": "17",
+    "explanation": "先括号：12 - 6 = 6，再乘除从左到右：18 × 4 = 72，72 ÷ 6 = 12；35 ÷ 7 = 5，再加：12 + 5 = 17",
+    "difficulty": "中等"
+  },
+  {
+    "id": 331,
+    "question": "计算：200 ÷ 10 - 6 × 3 + 45 ÷ 9 = ?",
+    "answer": "7",
+    "explanation": "先乘除：200 ÷ 10 = 20，6 × 3 = 18，45 ÷ 9 = 5，再加减：20 - 18 = 2，2 + 5 = 7",
+    "difficulty": "中等"
+  },
+  {
+    "id": 332,
+    "question": "计算：(56 ÷ 8 + 3) × 4 - 15 = ?",
+    "answer": "25",
+    "explanation": "先括号内：56 ÷ 8 = 7，7 + 3 = 10；再乘：10 × 4 = 40；再减：40 - 15 = 25",
+    "difficulty": "中等"
+  },
+  {
+    "id": 333,
+    "question": "计算：72 ÷ 9 × (5 + 2) - 18 ÷ 3 = ?",
+    "answer": "50",
+    "explanation": "先括号：5 + 2 = 7，再乘除从左到右：72 ÷ 9 = 8，8 × 7 = 56；18 ÷ 3 = 6，再减：56 - 6 = 50",
+    "difficulty": "中等"
+  },
+  {
+    "id": 334,
+    "question": "计算：90 ÷ (5 + 4) × 7 - 12 = ?",
+    "answer": "58",
+    "explanation": "先括号：5 + 4 = 9，再从左到右：90 ÷ 9 = 10，10 × 7 = 70，再减：70 - 12 = 58",
+    "difficulty": "中等"
+  },
+  {
+    "id": 335,
+    "question": "计算：36 × 2 - 48 ÷ 6 + 5 × 3 = ?",
+    "answer": "79",
+    "explanation": "先乘除：36 × 2 = 72，48 ÷ 6 = 8，5 × 3 = 15，再加减：72 - 8 = 64，64 + 15 = 79",
+    "difficulty": "中等"
+  },
+  {
+    "id": 336,
+    "question": "计算：(42 - 18) ÷ 8 × 10 + 25 = ?",
+    "answer": "55",
+    "explanation": "先括号：42 - 18 = 24，再乘除：24 ÷ 8 = 3，3 × 10 = 30，再加：30 + 25 = 55",
+    "difficulty": "中等"
+  },
+  {
+    "id": 337,
+    "question": "计算：150 ÷ (9 - 4) + 7 × 6 - 20 = ?",
+    "answer": "52",
+    "explanation": "先括号：9 - 4 = 5，再乘除：150 ÷ 5 = 30，7 × 6 = 42，再加减：30 + 42 = 72，72 - 20 = 52",
+    "difficulty": "中等"
+  },
+  {
+    "id": 338,
+    "question": "计算：64 ÷ 4 × (6 - 2) + 18 ÷ 3 = ?",
+    "answer": "70",
+    "explanation": "先括号：6 - 2 = 4，再乘除从左到右：64 ÷ 4 = 16，16 × 4 = 64；18 ÷ 3 = 6，再加：64 + 6 = 70",
+    "difficulty": "中等"
+  },
+  {
+    "id": 339,
+    "question": "计算：39 + 12 × 3 ÷ 4 - 15 = ?",
+    "answer": "33",
+    "explanation": "先乘除从左到右：12 × 3 = 36，36 ÷ 4 = 9，再加减：39 + 9 = 48，48 - 15 = 33",
+    "difficulty": "中等"
+  },
+  {
+    "id": 340,
+    "question": "计算：(27 ÷ 3 + 5) × 2 - 14 = ?",
+    "answer": "14",
+    "explanation": "先括号：27 ÷ 3 = 9，9 + 5 = 14；再乘：14 × 2 = 28；再减：28 - 14 = 14",
+    "difficulty": "中等"
+  },
+  {
+    "id": 341,
+    "question": "计算：120 ÷ 6 + 8 × (7 - 4) = ?",
+    "answer": "44",
+    "explanation": "先括号：7 - 4 = 3，再乘除：120 ÷ 6 = 20，8 × 3 = 24，再加：20 + 24 = 44",
+    "difficulty": "中等"
+  },
+  {
+    "id": 342,
+    "question": "计算：50 - 16 ÷ 4 × 2 + 9 × 3 = ?",
+    "answer": "69",
+    "explanation": "先乘除从左到右：16 ÷ 4 = 4，4 × 2 = 8；9 × 3 = 27，再加减：50 - 8 = 42，42 + 27 = 69",
+    "difficulty": "中等"
+  },
+  {
+    "id": 343,
+    "question": "计算：84 ÷ 7 × (5 - 2) - 36 ÷ 9 = ?",
+    "answer": "32",
+    "explanation": "先括号：5 - 2 = 3，再乘除从左到右：84 ÷ 7 = 12，12 × 3 = 36；36 ÷ 9 = 4，再减：36 - 4 = 32",
+    "difficulty": "中等"
+  },
+  {
+    "id": 344,
+    "question": "计算：180 ÷ (8 + 2) × 4 - 25 = ?",
+    "answer": "47",
+    "explanation": "先括号：8 + 2 = 10，再从左到右：180 ÷ 10 = 18，18 × 4 = 72，再减：72 - 25 = 47",
+    "difficulty": "中等"
+  },
+  {
+    "id": 345,
+    "question": "计算：56 - 28 ÷ 7 × 2 + 6 × 5 = ?",
+    "answer": "78",
+    "explanation": "先乘除：28 ÷ 7 = 4，4 × 2 = 8；6 × 5 = 30，再加减：56 - 8 = 48，48 + 30 = 78",
+    "difficulty": "中等"
+  },
+  {
+    "id": 346,
+    "question": "计算：(75 ÷ 5 - 3) × 4 + 18 = ?",
+    "answer": "66",
+    "explanation": "先括号内：75 ÷ 5 = 15，15 - 3 = 12，再乘：12 × 4 = 48，再加：48 + 18 = 66",
+    "difficulty": "中等"
+  },
+  {
+    "id": 347,
+    "question": "计算：120 ÷ 6 + 9 × (8 ÷ 2) - 15 = ?",
+    "answer": "41",
+    "explanation": "先括号内：8 ÷ 2 = 4，再乘除：120 ÷ 6 = 20，9 × 4 = 36，再加减：20 + 36 = 56，56 - 15 = 41",
+    "difficulty": "中等"
+  },
+  {
+    "id": 348,
+    "question": "计算：32 × 3 ÷ 4 + 45 ÷ (5 + 4) = ?",
+    "answer": "29",
+    "explanation": "先括号：5 + 4 = 9，再乘除：32 × 3 = 96，96 ÷ 4 = 24；45 ÷ 9 = 5，再加：24 + 5 = 29",
+    "difficulty": "中等"
+  },
+  {
+    "id": 349,
+    "question": "计算：70 - 36 ÷ 6 × 2 + 15 ÷ 3 = ?",
+    "answer": "63",
+    "explanation": "先乘除：36 ÷ 6 = 6，6 × 2 = 12；15 ÷ 3 = 5，再加减：70 - 12 = 58，58 + 5 = 63",
+    "difficulty": "中等"
+  },
+  {
+    "id": 350,
+    "question": "计算：(48 + 12) ÷ 10 × 7 - 14 = ?",
+    "answer": "28",
+    "explanation": "先括号：48 + 12 = 60，再乘除：60 ÷ 10 = 6，6 × 7 = 42，再减：42 - 14 = 28",
+    "difficulty": "中等"
+  },
+  {
+    "id": 351,
+    "question": "计算：54 ÷ 9 × (6 - 3) + 24 ÷ 8 = ?",
+    "answer": "21",
+    "explanation": "先括号：6 - 3 = 3，再乘除：54 ÷ 9 = 6，6 × 3 = 18；24 ÷ 8 = 3，再加：18 + 3 = 21",
+    "difficulty": "中等"
+  },
+  {
+    "id": 352,
+    "question": "计算：88 ÷ 11 + 7 × (9 - 5) - 20 = ?",
+    "answer": "16",
+    "explanation": "先括号：9 - 5 = 4，再乘除：88 ÷ 11 = 8，7 × 4 = 28，再加减：8 + 28 = 36，36 - 20 = 16",
+    "difficulty": "中等"
+  },
+  {
+    "id": 353,
+    "question": "计算：100 ÷ (12 - 7) × 2 + 18 ÷ 3 = ?",
+    "answer": "46",
+    "explanation": "先括号：12 - 7 = 5，再乘除：100 ÷ 5 = 20，20 × 2 = 40；18 ÷ 3 = 6，再加：40 + 6 = 46",
+    "difficulty": "中等"
+  }
+]

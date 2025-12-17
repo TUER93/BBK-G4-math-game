@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBK数学答题王 - 管理后台</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🎓 BBK数学答题王 - 数据管理后台</h1>
+            <div class="header-actions">
+                <button id="backupBtn" class="btn btn-info">📦 备份数据</button>
+                <button id="exportBtn" class="btn btn-success">📥 导出所有数据</button>
+                <button id="logoutBtn" class="btn btn-danger">🔒 退出登录</button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-tab="students">👥 学生管理</button>
+            <button class="nav-btn" data-tab="questions">📝 题目管理</button>
+            <button class="nav-btn" data-tab="users">📊 用户数据</button>
+            <button class="nav-btn" data-tab="import">📤 批量导入</button>
+        </nav>
+
+        <!-- 学生管理 -->
+        <div id="students-tab" class="tab-content active">
+            <div class="content-header">
+                <h2>学生信息管理</h2>
+                <div class="actions">
+                    <button id="addStudentBtn" class="btn btn-primary">➕ 添加学生</button>
+                    <input type="text" id="searchStudent" placeholder="🔍 搜索学生姓名或班级" class="search-input">
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalStudents">0</div>
+                    <div class="stat-label">总学生数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalClasses">0</div>
+                    <div class="stat-label">班级数</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>班级</th>
+                            <th>姓名</th>
+                            <th>账号</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 题目管理 -->
+        <div id="questions-tab" class="tab-content">
+            <div class="content-header">
+                <h2>题目库管理</h2>
+                <div class="actions">
+                    <button id="addQuestionBtn" class="btn btn-primary">➕ 添加题目</button>
+                    <select id="filterDifficulty" class="filter-select">
+                        <option value="">全部难度</option>
+                        <option value="简单">简单</option>
+                        <option value="中等">中等</option>
+                        <option value="困难">困难</option>
+                    </select>
+                    <input type="text" id="searchQuestion" placeholder="🔍 搜索题目内容" class="search-input">
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalQuestions">0</div>
+                    <div class="stat-label">题目总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="easyQuestions">0</div>
+                    <div class="stat-label">简单题</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="mediumQuestions">0</div>
+                    <div class="stat-label">中等题</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="hardQuestions">0</div>
+                    <div class="stat-label">困难题</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="questionsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>题目</th>
+                            <th>答案</th>
+                            <th>难度</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 用户数据 -->
+        <div id="users-tab" class="tab-content">
+            <div class="content-header">
+                <h2>用户游戏数据</h2>
+                <div class="actions">
+                    <select id="filterClass" class="filter-select">
+                        <option value="">全部班级</option>
+                    </select>
+                    <input type="text" id="searchUser" placeholder="🔍 搜索用户" class="search-input">
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="activeUsers">0</div>
+                    <div class="stat-label">活跃用户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgLevel">0</div>
+                    <div class="stat-label">平均等级</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>班级</th>
+                            <th>姓名</th>
+                            <th>等级</th>
+                            <th>元素统计</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 批量导入 -->
+        <div id="import-tab" class="tab-content">
+            <div class="content-header">
+                <h2>批量导入数据</h2>
+            </div>
+            
+            <div class="import-section">
+                <h3>📥 导入学生数据 (CSV/Excel)</h3>
+                <p class="hint">格式: 班级,姓名,账号 (每行一个学生)</p>
+                <p class="hint" style="color: #48bb78;">✅ 示例: 一班,张三,zs001</p>
+                <textarea id="studentImportData" rows="10" placeholder="一班,张三,zs001&#10;一班,李四,ls001&#10;二班,王五,ww002"></textarea>
+                <button id="importStudentsBtn" class="btn btn-success">导入学生</button>
+            </div>
+
+            <div class="import-section">
+                <h3>📥 导入题目数据</h3>
+                <p class="hint">格式: 题目|答案|解析|难度 (每行一个题目,用 | 分隔)</p>
+                <textarea id="questionImportData" rows="10" placeholder="计算: 25 + 37 = ?|62|25 + 37 = 62|简单&#10;计算: 89 - 43 = ?|46|89 - 43 = 46|简单"></textarea>
+                <button id="importQuestionsBtn" class="btn btn-success">导入题目</button>
+            </div>
+
+            <div class="import-section">
+                <h3>📄 从文件导入</h3>
+                <div class="file-upload">
+                    <label for="fileUpload" class="upload-label">
+                        <span>📁 选择文件 (支持 .txt, .csv, .json)</span>
+                        <input type="file" id="fileUpload" accept=".txt,.csv,.json" style="display:none">
+                    </label>
+                    <div id="fileName" class="file-name"></div>
+                </div>
+                <select id="fileType" class="filter-select">
+                    <option value="students">学生数据</option>
+                    <option value="questions">题目数据</option>
+                </select>
+                <button id="uploadFileBtn" class="btn btn-primary">上传并导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加/编辑学生弹窗 -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <h2 id="studentModalTitle">添加学生</h2>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label>班级:</label>
+                    <input type="text" id="studentClass" required placeholder="例: 一班">
+                </div>
+                <div class="form-group">
+                    <label>姓名:</label>
+                    <input type="text" id="studentName" required placeholder="例: 张三">
+                </div>
+                <div class="form-group">
+                    <label>账号:</label>
+                    <input type="text" id="studentAccount" required placeholder="例: zs001">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('studentModal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 添加/编辑题目弹窗 -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content large">
+            <h2 id="questionModalTitle">添加题目</h2>
+            <form id="questionForm">
+                <div class="form-group">
+                    <label>题目:</label>
+                    <textarea id="questionText" required rows="3" placeholder="例: 计算: 25 + 37 = ?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>答案:</label>
+                    <input type="text" id="questionAnswer" required placeholder="例: 62">
+                </div>
+                <div class="form-group">
+                    <label>解析:</label>
+                    <textarea id="questionExplanation" required rows="2" placeholder="例: 25 + 37 = 62"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>难度:</label>
+                    <select id="questionDifficulty" required>
+                        <option value="简单">简单</option>
+                        <option value="中等">中等</option>
+                        <option value="困难">困难</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('questionModal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 查看用户详情弹窗 -->
+    <div id="userDetailModal" class="modal">
+        <div class="modal-content large">
+            <h2>用户详细信息</h2>
+            <div id="userDetailContent"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('userDetailModal')">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
