@@ -1,0 +1,54 @@
+# Serverless Framework 配置文件
+# 用于部署到腾讯云 Serverless
+
+service: bbk-math-game
+
+provider:
+  name: tencent
+  runtime: Nodejs16.13
+  credentials: ~/.tencent/credentials
+  region: ap-shanghai
+  
+plugins:
+  - serverless-tencent-express
+
+custom:
+  express:
+    component: express
+    app: bbk-game
+
+functions:
+  app:
+    handler: index.main_handler
+    description: BBK数学答题王主服务
+    memorySize: 512
+    timeout: 10
+    environment:
+      NODE_ENV: production
+    events:
+      - apigw:
+          name: bbk-game-api
+          parameters:
+            protocols:
+              - http
+              - https
+            environment: release
+            endpoints:
+              - path: /
+                method: ANY
+              - path: /{proxy+}
+                method: ANY
+
+# 静态资源配置
+resources:
+  cos:
+    bucket: bbk-game-${self:provider.region}
+    sources:
+      - src: ./audio
+        targetDir: /audio
+      - src: ./index.html
+        targetDir: /
+      - src: ./styles.css
+        targetDir: /
+      - src: ./admin.html
+        targetDir: /

@@ -40,7 +40,9 @@
             <div class="player-info">
                 <span id="playerName"></span>
                 <span class="level">等级: <span id="playerLevel">1</span></span>
+                <span class="accuracy" style="margin-left: 15px;">正确率: <span id="accuracyRate" style="font-weight: bold; color: #48bb78;">0%</span></span>
                 <span class="streak" id="streakDisplay" style="display:none;">连杀: <span id="streakCount">0</span></span>
+                <span class="time-remaining" style="margin-left: 15px; font-weight: bold;">⏰ 剩余时间: <span id="timeRemaining">30:00</span></span>
             </div>
             <div class="elements-display">
                 <span class="element fire">🔥 <span id="fireCount">0</span></span>
@@ -56,7 +58,8 @@
                 <button id="giftBtn" class="btn btn-info">赠送元素</button>
                 <button id="upgradeBtn" class="btn btn-success">升级</button>
                 <button id="wrongQuestionsBtn" class="btn btn-secondary">错题本</button>
-                <button id="rankBtn" class="btn btn-primary">排行榜</button>
+                <button id="rankBtn" class="btn btn-primary">等级排行</button>
+                <button id="myStatsBtn" class="btn btn-primary">我的统计</button>
                 <button id="muteBtn" class="btn btn-secondary">🔊 音效</button>
             </div>
         </div>
@@ -116,7 +119,7 @@
     <div id="challengeModal" class="modal">
         <div class="modal-content">
             <h2>⚔️ 挑战模式</h2>
-            <p class="challenge-desc">消耗元素: 火🔥×1, 水💧×1, 风🌪️×1, 岩🪨×1, 草🌿×1</p>
+            <p class="challenge-desc">消耗元素: 水💧×1, 风🌪️×1, 岩🪨×1, 草🌿×1</p>
             <p class="challenge-reward">奖励: 在60秒内答对可获得稀有元素(雷⚡/火🔥)</p>
             <div class="modal-actions">
                 <button id="confirmChallengeBtn" class="btn btn-success">确定</button>
@@ -193,7 +196,7 @@
     <!-- 排行榜弹窗 -->
     <div id="rankModal" class="modal">
         <div class="modal-content large">
-            <h2>🏆 排行榜</h2>
+            <h2>🏆 等级排行榜</h2>
             <div class="rank-tabs">
                 <button id="classRankTab" class="rank-tab active">班级排行</button>
                 <button id="totalRankTab" class="rank-tab">总榜排行</button>
@@ -201,6 +204,26 @@
             <div id="rankList" class="rank-list"></div>
             <div class="modal-actions">
                 <button id="closeRankBtn" class="btn btn-secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 我的统计弹窗 -->
+    <div id="myStatsModal" class="modal">
+        <div class="modal-content large">
+            <h2>📊 我的答题统计</h2>
+            
+            <!-- 统计摘要 -->
+            <div id="statsInfo"></div>
+            
+            <!-- 正确率趋势图 -->
+            <div class="chart-container">
+                <h3 style="text-align: center; margin-bottom: 15px; color: #4a5568;">正确率趋势图</h3>
+                <canvas id="accuracyChart" width="700" height="400"></canvas>
+            </div>
+            
+            <div class="modal-actions">
+                <button id="closeStatsBtn" class="btn btn-secondary">关闭</button>
             </div>
         </div>
     </div>

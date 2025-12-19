@@ -9,10 +9,21 @@ const PORT = process.env.PORT || 3000;
 // 中间件
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+
+// 静态文件服务 - 明确指定 audio 目录
+app.use('/audio', express.static(path.join(__dirname, 'audio')));
+app.use(express.static(__dirname));
+
+// 数据存储目录（支持云托管持久化存储）
+const DATA_DIR = process.env.DATA_DIR || __dirname;
+
+// 确保数据目录存在
+if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+}
 
 // 数据文件路径
-const DATA_FILE = path.join(__dirname, 'data.json');
+const DATA_FILE = path.join(DATA_DIR, 'data.json');
 const QUESTIONS_FILE = path.join(__dirname, 'questions.json');
 const STUDENTS_FILE = path.join(__dirname, 'students.json');
 
@@ -131,7 +142,18 @@ app.post('/api/login', (req, res) => {
             },
             wrongQuestions: [],
             answeredQuestions: [], // 已做过的题目ID列表
-            answeredChallengeQuestions: [] // 已做过的挑战题ID列表
+            answeredChallengeQuestions: [], // 已做过的挑战题ID列表
+            dailyUsage: {
+                date: new Date().toDateString(),
+                duration: 0, // 已使用时长（秒）
+                loginTime: Date.now() // 本次登录时间
+            },
+            statistics: {
+                totalQuestions: 0, // 总答题数
+                correctQuestions: 0, // 正确题数
+                accuracy: 0 // 正确率（百分比）
+            },
+            answerHistory: [] // 答题历史记录
         };
         gameData.users.push(user);
         saveData();
@@ -139,9 +161,47 @@ app.post('/api/login', (req, res) => {
         // 确保旧用户也有这些字段
         if (!user.answeredQuestions) user.answeredQuestions = [];
         if (!user.answeredChallengeQuestions) user.answeredChallengeQuestions = [];
+        
+        // 初始化统计数据
+        if (!user.statistics) {
+            user.statistics = {
+                totalQuestions: 0,
+                correctQuestions: 0,
+                accuracy: 0
+            };
+        }
+        
+        // 初始化答题历史
+        if (!user.answerHistory) {
+            user.answerHistory = [];
+        }
+        
+        // 初始化或重置每日使用时长
+        const today = new Date().toDateString();
+        if (!user.dailyUsage || user.dailyUsage.date !== today) {
+            // 新的一天，重置时长
+            user.dailyUsage = {
+                date: today,
+                duration: 0,
+                loginTime: Date.now()
+            };
+        } else {
+            // 同一天，更新登录时间
+            user.dailyUsage.loginTime = Date.now();
+        }
+        
+        saveData();
     }
     
-    res.json({ success: true, user });
+    // 检查今日是否还有剩余时长
+    const maxDuration = 30 * 60; // 30分钟 = 1800秒
+    const remainingTime = maxDuration - (user.dailyUsage?.duration || 0);
+    
+    res.json({ 
+        success: true, 
+        user,
+        remainingTime: Math.max(0, remainingTime)
+    });
 });
 
 // 获取题目
@@ -214,11 +274,46 @@ app.post('/api/answer', (req, res) => {
         return res.json({ success: false, message: '题目不存在' });
     }
     
-    // 确保用户有已答题记录
+    // 确保用户有已答题记录和统计数据
     if (!user.answeredQuestions) user.answeredQuestions = [];
     if (!user.answeredChallengeQuestions) user.answeredChallengeQuestions = [];
+    if (!user.statistics) {
+        user.statistics = {
+            totalQuestions: 0,
+            correctQuestions: 0,
+            accuracy: 0
+        };
+    }
+    if (!user.answerHistory) {
+        user.answerHistory = [];
+    }
     
     const correct = answer.toString().trim() === question.answer.toString().trim();
+    
+    // 更新统计数据
+    user.statistics.totalQuestions++;
+    if (correct) {
+        user.statistics.correctQuestions++;
+    }
+    user.statistics.accuracy = user.statistics.totalQuestions > 0 
+        ? Math.round((user.statistics.correctQuestions / user.statistics.totalQuestions) * 100) 
+        : 0;
+    
+    // 记录答题历史（保留最近100条）
+    user.answerHistory.push({
+        questionId,
+        question: question.question,
+        userAnswer: answer,
+        correctAnswer: question.answer,
+        isCorrect: correct,
+        timestamp: Date.now(),
+        accuracy: user.statistics.accuracy // 记录当时的累计正确率
+    });
+    
+    // 只保留最近100条记录
+    if (user.answerHistory.length > 100) {
+        user.answerHistory = user.answerHistory.slice(-100);
+    }
     
     if (correct) {
         // 记录已做过的题目（答对才记录）
@@ -262,28 +357,42 @@ app.post('/api/answer', (req, res) => {
         res.json({
             correct: true,
             earnedElement,
-            elements: user.elements
+            elements: user.elements,
+            statistics: user.statistics
         });
     } else {
         res.json({
             correct: false,
             correctAnswer: question.answer,
-            explanation: question.explanation
+            explanation: question.explanation,
+            statistics: user.statistics
         });
     }
 });
 
-// 随机掉落元素(火和雷稀有)
+// 随机掉落元素
+// 水、风、岩、草：各22.5%（共90%）- 高概率
+// 火、雷：各5%（共10%）- 低概率（稀有）
 function getRandomElement() {
     const rand = Math.random();
     
-    if (rand < 0.50) return 'thunder';  // 15% 雷 (提高概率)
-    if (rand < 0.50) return 'fire';      // 20% 火 (提高概率)
-    if (rand < 0.50) return 'water';     // 15% 水
-    if (rand < 0.99) return 'wind';      // 15% 风
-    if (rand < 0.80) return 'rock';      // 15% 岩
-    if (rand < 0.50) return 'grass';     // 15% 草
-    return 'ice';                         // 5% 冰
+    // 水 22.5%
+    if (rand < 0.225) return 'water';
+    
+    // 风 22.5% (0.225 - 0.45)
+    if (rand < 0.45) return 'wind';
+    
+    // 岩 22.5% (0.45 - 0.675)
+    if (rand < 0.675) return 'rock';
+    
+    // 草 22.5% (0.675 - 0.90)
+    if (rand < 0.90) return 'grass';
+    
+    // 火 5% (0.90 - 0.95)
+    if (rand < 0.95) return 'fire';
+    
+    // 雷 5% (0.95 - 1.00)
+    return 'thunder';
 }
 
 // 开始挑战
@@ -295,8 +404,8 @@ app.post('/api/challenge/start', (req, res) => {
         return res.json({ success: false, message: '用户不存在' });
     }
     
-    // 扣除元素
-    const required = { fire: 1, water: 1, wind: 1, rock: 1, grass: 1 };
+    // 扣除元素（只需要水、风、岩、草各1个）
+    const required = { water: 1, wind: 1, rock: 1, grass: 1 };
     for (let [elem, count] of Object.entries(required)) {
         if (user.elements[elem] < count) {
             return res.json({ success: false, message: '元素不足' });
@@ -420,6 +529,26 @@ app.get('/api/rank/class/:className', (req, res) => {
     res.json(classUsers);
 });
 
+// 获取个人答题历史
+app.get('/api/answer-history/:userId', (req, res) => {
+    const user = gameData.users.find(u => u.id === req.params.userId);
+    
+    if (!user) {
+        return res.json({ success: false, message: '用户不存在' });
+    }
+    
+    // 确保有答题历史
+    if (!user.answerHistory) {
+        user.answerHistory = [];
+    }
+    
+    res.json({ 
+        success: true, 
+        history: user.answerHistory,
+        statistics: user.statistics
+    });
+});
+
 // 获取排行榜 - 总榜
 app.get('/api/rank/total', (req, res) => {
     const rankedUsers = gameData.users
@@ -432,6 +561,43 @@ app.get('/api/rank/total', (req, res) => {
 app.get('/api/broadcast', (req, res) => {
     const recentBroadcasts = gameData.broadcasts.slice(0, 5);
     res.json(recentBroadcasts);
+});
+
+// 更新用户使用时长
+app.post('/api/update-usage', (req, res) => {
+    const { userId } = req.body;
+    const user = gameData.users.find(u => u.id === userId);
+    
+    if (!user) {
+        return res.json({ success: false, message: '用户不存在' });
+    }
+    
+    const today = new Date().toDateString();
+    
+    // 如果是新的一天，重置时长
+    if (!user.dailyUsage || user.dailyUsage.date !== today) {
+        user.dailyUsage = {
+            date: today,
+            duration: 0,
+            loginTime: Date.now()
+        };
+    }
+    
+    // 计算本次会话使用时长（秒）
+    const sessionDuration = Math.floor((Date.now() - user.dailyUsage.loginTime) / 1000);
+    user.dailyUsage.duration += sessionDuration;
+    user.dailyUsage.loginTime = Date.now(); // 重置登录时间
+    
+    const maxDuration = 30 * 60; // 30分钟
+    const remainingTime = Math.max(0, maxDuration - user.dailyUsage.duration);
+    
+    saveData();
+    
+    res.json({ 
+        success: true, 
+        remainingTime,
+        usedTime: user.dailyUsage.duration
+    });
 });
 
 // ========== 管理后台 API ==========

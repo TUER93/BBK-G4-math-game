@@ -11,21 +11,21 @@ class AudioManager {
     
     init() {
         // 背景音乐
-        this.bgMusic = new Audio('audio/游戏背景音乐.mp3');
+        this.bgMusic = new Audio('audio/bgm.mp3');
         this.bgMusic.loop = true;
         this.bgMusic.volume = 0.3; // 背景音乐音量30%
         
         // 音效
         this.soundEffects = {
-            correct: new Audio('audio/太棒了.mp3'),
-            double: new Audio('audio/双杀.mp3'),
-            triple: new Audio('audio/三杀.mp3'),
-            quadra: new Audio('audio/四杀.mp3'),
-            penta: new Audio('audio/五杀.mp3'),
-            godlike: new Audio('audio/超神.mp3'),
-            wrong: new Audio('audio/做错音乐.mp3'),
-            upgrade: new Audio('audio/升级.mp3'),
-            gift: new Audio('audio/谢谢.mp3')
+            correct: new Audio('audio/correct.mp3'),
+            double: new Audio('audio/double.mp3'),
+            triple: new Audio('audio/triple.mp3'),
+            quadra: new Audio('audio/quadra.mp3'),
+            penta: new Audio('audio/penta.mp3'),
+            godlike: new Audio('audio/godlike.mp3'),
+            wrong: new Audio('audio/wrong.mp3'),
+            upgrade: new Audio('audio/upgrade.mp3'),
+            gift: new Audio('audio/gift.mp3')
         };
         
         // 设置音效音量
@@ -39,8 +39,26 @@ class AudioManager {
         if (!this.isMuted && this.bgMusic) {
             this.bgMusic.play().catch(err => {
                 console.log('背景音乐播放失败:', err);
+                console.log('提示: 某些浏览器需要用户交互后才能播放音频');
+                console.log('请点击页面任意位置或答题后即可播放音效');
                 // 某些浏览器需要用户交互后才能播放
             });
+        }
+    }
+    
+    // 初始化音频（在用户交互后调用）
+    async initAudio() {
+        try {
+            // 尝试播放并立即暂停，以激活音频上下文
+            await this.bgMusic.play();
+            this.bgMusic.pause();
+            this.bgMusic.currentTime = 0;
+            
+            console.log('✅ 音频系统初始化成功');
+            return true;
+        } catch (err) {
+            console.log('❌ 音频初始化失败:', err);
+            return false;
         }
     }
     

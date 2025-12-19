@@ -10,6 +10,9 @@ let isInChallenge = false;
 let challengeTimer = null;
 let cooldownTimer = null;
 let broadcastInterval = null;
+let usageTimer = null; // 使用时长计时器
+let remainingTime = 0; // 剩余时长（秒）
+let userStatistics = { totalQuestions: 0, correctQuestions: 0, accuracy: 0 }; // 用户统计数据
 
 // 元素名称映射
 const elementNames = {
@@ -129,6 +132,19 @@ async function login() {
         const data = await response.json();
         if (data.success) {
             currentUser = data.user;
+            remainingTime = data.remainingTime || 0;
+            
+            // 初始化统计数据
+            if (currentUser.statistics) {
+                userStatistics = currentUser.statistics;
+            }
+            
+            // 检查剩余时长
+            if (remainingTime <= 0) {
+                alert('⏰ 今天的使用时长已用完！\n明天再来吧~ 💪');
+                return;
+            }
+            
             showGamePage();
         } else {
             alert(data.message || '登录失败');
@@ -147,8 +163,14 @@ function showGamePage() {
     document.getElementById('playerName').textContent = `${currentUser.className} - ${currentUser.name}`;
     updateUserDisplay();
     
-    // 播放背景音乐
-    audioManager.playBGM();
+    // 初始化并播放背景音乐
+    audioManager.initAudio().then(() => {
+        audioManager.playBGM();
+        console.log('🎵 背景音乐已启动');
+    });
+    
+    // 启动使用时长计时器
+    startUsageTimer();
     
     // 自动加载第一道题目
     loadQuestion();
@@ -163,6 +185,28 @@ function updateUserDisplay() {
     document.getElementById('grassCount').textContent = currentUser.elements.grass;
     document.getElementById('thunderCount').textContent = currentUser.elements.thunder;
     document.getElementById('iceCount').textContent = currentUser.elements.ice;
+    
+    // 更新正确率显示
+    updateAccuracyDisplay();
+    
+    // 更新剩余时长显示
+    updateTimeDisplay();
+}
+
+function updateAccuracyDisplay() {
+    const accuracyElement = document.getElementById('accuracyRate');
+    if (accuracyElement) {
+        accuracyElement.textContent = `${userStatistics.accuracy}%`;
+        
+        // 根据正确率设置颜色
+        if (userStatistics.accuracy >= 90) {
+            accuracyElement.style.color = '#48bb78'; // 绿色
+        } else if (userStatistics.accuracy >= 70) {
+            accuracyElement.style.color = '#ed8936'; // 橙色
+        } else {
+            accuracyElement.style.color = '#f56565'; // 红色
+        }
+    }
 }
 
 // ========== 答题相关 ==========
@@ -221,6 +265,12 @@ function initGame() {
     document.getElementById('totalRankTab').addEventListener('click', () => showRank('total'));
     document.getElementById('closeRankBtn').addEventListener('click', () => {
         document.getElementById('rankModal').classList.remove('show');
+    });
+    
+    // 个人答题统计
+    document.getElementById('myStatsBtn').addEventListener('click', showMyStatsModal);
+    document.getElementById('closeStatsBtn').addEventListener('click', () => {
+        document.getElementById('myStatsModal').classList.remove('show');
     });
     
     // 音效控制
@@ -336,8 +386,14 @@ async function submitAnswer() {
         // 更新用户数据
         if (result.correct) {
             currentUser.elements = result.elements;
-            updateUserDisplay();
         }
+        
+        // 更新统计数据
+        if (result.statistics) {
+            userStatistics = result.statistics;
+        }
+        
+        updateUserDisplay();
     } catch (error) {
         console.error('提交答案失败:', error);
     }
@@ -454,8 +510,8 @@ function showChallengeModal() {
 }
 
 async function startChallenge() {
-    // 检查元素是否足够
-    const required = { fire: 1, water: 1, wind: 1, rock: 1, grass: 1 };
+    // 检查元素是否足够（只需要水、风、岩、草）
+    const required = { water: 1, wind: 1, rock: 1, grass: 1 };
     for (let [elem, count] of Object.entries(required)) {
         if (currentUser.elements[elem] < count) {
             alert(`元素不足! 需要${elementNames[elem].name}${elementNames[elem].icon}×${count}`);
@@ -756,6 +812,183 @@ async function showRank(type) {
     }
 }
 
+// ========== 个人答题统计 ==========
+async function showMyStatsModal() {
+    const modal = document.getElementById('myStatsModal');
+    modal.classList.add('show');
+    
+    try {
+        const response = await fetch(`${SERVER_URL}/api/answer-history/${currentUser.id}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            // 显示统计信息
+            const statsInfo = document.getElementById('statsInfo');
+            statsInfo.innerHTML = `
+                <div class="stats-summary">
+                    <div class="stat-item">
+                        <div class="stat-label">总答题数</div>
+                        <div class="stat-value">${data.statistics.totalQuestions}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">正确题数</div>
+                        <div class="stat-value" style="color: #48bb78;">${data.statistics.correctQuestions}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">错误题数</div>
+                        <div class="stat-value" style="color: #f56565;">${data.statistics.totalQuestions - data.statistics.correctQuestions}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">总正确率</div>
+                        <div class="stat-value" style="color: ${data.statistics.accuracy >= 90 ? '#48bb78' : data.statistics.accuracy >= 70 ? '#ed8936' : '#f56565'}; font-size: 32px;">
+                            ${data.statistics.accuracy}%
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 绘制折线图
+            drawAccuracyChart(data.history);
+        }
+    } catch (error) {
+        console.error('加载答题历史失败:', error);
+    }
+}
+
+function drawAccuracyChart(history) {
+    const canvas = document.getElementById('accuracyChart');
+    const ctx = canvas.getContext('2d');
+    
+    // 清空画布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    if (history.length === 0) {
+        ctx.fillStyle = '#718096';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('暂无答题记录', canvas.width / 2, canvas.height / 2);
+        return;
+    }
+    
+    // 设置画布样式
+    const padding = 50;
+    const chartWidth = canvas.width - padding * 2;
+    const chartHeight = canvas.height - padding * 2;
+    
+    // 绘制坐标轴
+    ctx.strokeStyle = '#cbd5e0';
+    ctx.lineWidth = 2;
+    
+    // Y轴
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, canvas.height - padding);
+    ctx.stroke();
+    
+    // X轴
+    ctx.beginPath();
+    ctx.moveTo(padding, canvas.height - padding);
+    ctx.lineTo(canvas.width - padding, canvas.height - padding);
+    ctx.stroke();
+    
+    // 绘制Y轴刻度和标签（0-100%）
+    ctx.fillStyle = '#4a5568';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 10; i++) {
+        const y = canvas.height - padding - (chartHeight / 10) * i;
+        const value = i * 10;
+        
+        // 刻度线
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(canvas.width - padding, y);
+        ctx.stroke();
+        
+        // 标签
+        ctx.fillText(value + '%', padding - 10, y + 5);
+    }
+    
+    // 绘制X轴标签
+    ctx.textAlign = 'center';
+    ctx.fillText('答题序号', canvas.width / 2, canvas.height - 10);
+    
+    // Y轴标签
+    ctx.save();
+    ctx.translate(15, canvas.height / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('正确率', 0, 0);
+    ctx.restore();
+    
+    // 取最近50条记录
+    const recentHistory = history.slice(-50);
+    
+    // 绘制折线
+    if (recentHistory.length > 1) {
+        ctx.strokeStyle = '#667eea';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        
+        recentHistory.forEach((record, index) => {
+            const x = padding + (chartWidth / (recentHistory.length - 1)) * index;
+            const y = canvas.height - padding - (chartHeight * record.accuracy / 100);
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        ctx.stroke();
+        
+        // 绘制数据点
+        recentHistory.forEach((record, index) => {
+            const x = padding + (chartWidth / (recentHistory.length - 1)) * index;
+            const y = canvas.height - padding - (chartHeight * record.accuracy / 100);
+            
+            // 圆点
+            ctx.fillStyle = record.isCorrect ? '#48bb78' : '#f56565';
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 边框
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+    
+    // 显示数据点数量
+    ctx.fillStyle = '#4a5568';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(`最近${recentHistory.length}题`, padding, padding - 20);
+    
+    // 图例
+    const legendX = canvas.width - padding - 120;
+    const legendY = padding;
+    
+    // 正确点
+    ctx.fillStyle = '#48bb78';
+    ctx.beginPath();
+    ctx.arc(legendX, legendY, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#4a5568';
+    ctx.fillText('答对', legendX + 15, legendY + 5);
+    
+    // 错误点
+    ctx.fillStyle = '#f56565';
+    ctx.beginPath();
+    ctx.arc(legendX + 70, legendY, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#4a5568';
+    ctx.fillText('答错', legendX + 85, legendY + 5);
+}
+
 // ========== 实时播报 ==========
 async function startBroadcastUpdate() {
     broadcastInterval = setInterval(async () => {
@@ -807,3 +1040,99 @@ function updateStreakDisplay() {
         streakDisplay.style.display = 'none';
     }
 }
+
+// ========== 使用时长管理 ==========
+function startUsageTimer() {
+    // 每秒更新一次剩余时长
+    usageTimer = setInterval(() => {
+        remainingTime--;
+        updateTimeDisplay();
+        
+        // 每30秒同步一次服务器
+        if (remainingTime % 30 === 0) {
+            syncUsageToServer();
+        }
+        
+        // 剩余5分钟时提醒
+        if (remainingTime === 5 * 60) {
+            alert('⏰ 提醒：今天还剩5分钟使用时间！');
+        }
+        
+        // 剩余1分钟时提醒
+        if (remainingTime === 60) {
+            alert('⏰ 提醒：今天还剩1分钟使用时间！');
+        }
+        
+        // 时间用完
+        if (remainingTime <= 0) {
+            handleTimeUp();
+        }
+    }, 1000);
+}
+
+function updateTimeDisplay() {
+    const timeDisplay = document.getElementById('timeRemaining');
+    if (!timeDisplay) return;
+    
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    // 时间少于5分钟时显示警告颜色
+    if (remainingTime < 5 * 60) {
+        timeDisplay.style.color = '#f56565';
+    } else {
+        timeDisplay.style.color = '#48bb78';
+    }
+}
+
+async function syncUsageToServer() {
+    try {
+        const response = await fetch(`${SERVER_URL}/api/update-usage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: currentUser.id })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            // 使用服务器返回的剩余时间校准本地时间
+            remainingTime = data.remainingTime;
+            console.log('✅ 使用时长已同步:', data.usedTime, '秒');
+        }
+    } catch (error) {
+        console.error('同步使用时长失败:', error);
+    }
+}
+
+function handleTimeUp() {
+    clearInterval(usageTimer);
+    clearInterval(broadcastInterval);
+    
+    // 最后一次同步到服务器
+    syncUsageToServer();
+    
+    // 禁用所有操作
+    document.getElementById('answerInput').disabled = true;
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('challengeBtn').disabled = true;
+    document.getElementById('giftBtn').disabled = true;
+    document.getElementById('upgradeBtn').disabled = true;
+    
+    // 停止背景音乐
+    audioManager.stopBGM();
+    
+    alert('⏰ 今天的使用时间已用完！\n感谢你的努力学习，明天再来吧~ 💪');
+    
+    // 3秒后返回登录页
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
+}
+
+// 页面关闭或刷新时同步时长
+window.addEventListener('beforeunload', () => {
+    if (currentUser) {
+        syncUsageToServer();
+    }
+});

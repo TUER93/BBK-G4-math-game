@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音效测试工具 - BBK数学答题王</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .test-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .test-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .test-btn:active {
+            transform: translateY(0);
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .audio-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .result-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .badge.ok {
+            background: #28a745;
+            color: white;
+        }
+        
+        .badge.fail {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 音效系统诊断工具</h1>
+        
+        <!-- 基础检测 -->
+        <div class="section">
+            <h2>📋 第一步：基础检测</h2>
+            <button class="test-btn" onclick="checkBasic()">开始检测</button>
+            <div id="basicResult"></div>
+        </div>
+        
+        <!-- 文件检测 -->
+        <div class="section">
+            <h2>📁 第二步：检测音频文件</h2>
+            <button class="test-btn" onclick="checkAudioFiles()">检测所有音频文件</button>
+            <div id="fileResult"></div>
+        </div>
+        
+        <!-- 播放测试 -->
+        <div class="section">
+            <h2>🔊 第三步：播放测试</h2>
+            <div class="audio-list">
+                <button class="test-btn" onclick="playAudio('audio/correct.mp3')">太棒了</button>
+                <button class="test-btn" onclick="playAudio('audio/double.mp3')">双杀</button>
+                <button class="test-btn" onclick="playAudio('audio/triple.mp3')">三杀</button>
+                <button class="test-btn" onclick="playAudio('audio/quadra.mp3')">四杀</button>
+                <button class="test-btn" onclick="playAudio('audio/penta.mp3')">五杀</button>
+                <button class="test-btn" onclick="playAudio('audio/godlike.mp3')">超神</button>
+                <button class="test-btn" onclick="playAudio('audio/wrong.mp3')">做错</button>
+                <button class="test-btn" onclick="playAudio('audio/upgrade.mp3')">升级</button>
+                <button class="test-btn" onclick="playAudio('audio/gift.mp3')">谢谢</button>
+                <button class="test-btn" onclick="playAudio('audio/bgm.mp3')">背景音乐</button>
+            </div>
+            <div id="playResult"></div>
+        </div>
+        
+        <!-- 解决方案 -->
+        <div class="section">
+            <h2>💡 诊断结果和解决方案</h2>
+            <div id="solution"></div>
+        </div>
+    </div>
+
+    <script>
+        const audioFiles = [
+            'correct.mp3',
+            'double.mp3',
+            'triple.mp3',
+            'quadra.mp3',
+            'penta.mp3',
+            'godlike.mp3',
+            'wrong.mp3',
+            'upgrade.mp3',
+            'gift.mp3',
+            'bgm.mp3'
+        ];
+
+        // 基础检测
+        function checkBasic() {
+            const resultDiv = document.getElementById('basicResult');
+            let html = '<div class="result-box">';
+            
+            // 检测浏览器
+            const ua = navigator.userAgent;
+            let browser = 'Unknown';
+            if (ua.indexOf('Chrome') > -1) browser = 'Chrome';
+            else if (ua.indexOf('Safari') > -1) browser = 'Safari';
+            else if (ua.indexOf('Firefox') > -1) browser = 'Firefox';
+            else if (ua.indexOf('Edge') > -1) browser = 'Edge';
+            
+            html += `<div class="result-item">浏览器: ${browser}</div>`;
+            
+            // 检测协议
+            const protocol = window.location.protocol;
+            html += `<div class="result-item">协议: ${protocol} ${protocol === 'https:' ? '<span class="badge ok">安全</span>' : '<span class="badge fail">不安全</span>'}</div>`;
+            
+            // 检测音频支持
+            const audio = new Audio();
+            const mp3Support = audio.canPlayType('audio/mpeg');
+            html += `<div class="result-item">MP3支持: ${mp3Support} ${mp3Support ? '<span class="badge ok">支持</span>' : '<span class="badge fail">不支持</span>'}</div>`;
+            
+            // 检测域名
+            html += `<div class="result-item">当前域名: ${window.location.hostname}</div>`;
+            html += `<div class="result-item">完整URL: ${window.location.href}</div>`;
+            
+            html += '</div>';
+            resultDiv.innerHTML = html;
+        }
+
+        // 检测音频文件
+        async function checkAudioFiles() {
+            const resultDiv = document.getElementById('fileResult');
+            resultDiv.innerHTML = '<div class="status info">正在检测音频文件...</div>';
+            
+            let html = '<div class="result-box">';
+            let successCount = 0;
+            let failCount = 0;
+            
+            for (const file of audioFiles) {
+                const url = `audio/${file}`;
+                try {
+                    const response = await fetch(url, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<div class="result-item">✅ ${file} <span class="badge ok">可访问</span></div>`;
+                        successCount++;
+                    } else {
+                        html += `<div class="result-item">❌ ${file} <span class="badge fail">HTTP ${response.status}</span></div>`;
+                        failCount++;
+                    }
+                } catch (err) {
+                    html += `<div class="result-item">❌ ${file} <span class="badge fail">无法访问</span></div>`;
+                    failCount++;
+                }
+            }
+            
+            html += '</div>';
+            
+            let statusHtml = '';
+            if (failCount === 0) {
+                statusHtml = `<div class="status success">✅ 所有音频文件检测通过！(${successCount}/${audioFiles.length})</div>`;
+            } else {
+                statusHtml = `<div class="status error">❌ 有 ${failCount} 个文件无法访问！请检查音频文件是否上传。</div>`;
+            }
+            
+            resultDiv.innerHTML = statusHtml + html;
+            
+            // 更新解决方案
+            updateSolution(failCount);
+        }
+
+        // 播放音频
+        function playAudio(src) {
+            const resultDiv = document.getElementById('playResult');
+            const audio = new Audio(src);
+            
+            resultDiv.innerHTML = `<div class="status info">正在播放: ${src}</div>`;
+            
+            audio.play()
+                .then(() => {
+                    resultDiv.innerHTML = `<div class="status success">✅ 播放成功: ${src}</div>`;
+                })
+                .catch(err => {
+                    resultDiv.innerHTML = `<div class="status error">❌ 播放失败: ${err.message}</div>`;
+                });
+        }
+
+        // 更新解决方案
+        function updateSolution(failCount) {
+            const solutionDiv = document.getElementById('solution');
+            
+            if (failCount === 0) {
+                solutionDiv.innerHTML = `
+                    <div class="status success">
+                        <strong>✅ 音频文件检测通过！</strong><br><br>
+                        如果游戏中仍然没有声音，可能原因：<br>
+                        1. 浏览器自动播放策略限制（这是正常的，登录后点击页面即可）<br>
+                        2. 音量被静音（检查游戏内的静音按钮）<br>
+                        3. 系统音量被关闭（检查电脑音量）<br><br>
+                        <strong>解决方法：</strong><br>
+                        - 点击上方任意音效按钮测试<br>
+                        - 如果能听到声音，说明音效系统正常<br>
+                        - 在游戏中答题后应该就能听到音效了
+                    </div>
+                `;
+            } else {
+                solutionDiv.innerHTML = `
+                    <div class="status error">
+                        <strong>❌ 检测到问题：音频文件未正确上传</strong><br><br>
+                        <strong>解决方法：</strong><br>
+                        1. 确认在打包时包含了 <code>audio/</code> 文件夹<br>
+                        2. 重新打包项目（确保包含所有 .mp3 文件）<br>
+                        3. 重新上传部署<br>
+                        4. 如果使用 GitHub 部署，确保 audio 文件夹已推送到仓库<br><br>
+                        <strong>需要包含的文件：</strong><br>
+                        ${audioFiles.map(f => `- audio/${f}`).join('<br>')}
+                    </div>
+                `;
+            }
+        }
+
+        // 页面加载时自动检测
+        window.onload = () => {
+            console.log('🎵 音效诊断工具已加载');
+            console.log('请点击"开始检测"按钮进行诊断');
+        };
+    </script>
+</body>
+</html>

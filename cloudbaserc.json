@@ -1,0 +1,22 @@
+{
+  "envId": "{{env.ENV_ID}}",
+  "functionRoot": "./",
+  "functions": [],
+  "framework": {
+    "name": "bbk-math-game",
+    "plugins": {
+      "node": {
+        "use": "@cloudbase/framework-plugin-node",
+        "inputs": {
+          "name": "bbk-game",
+          "entry": "server.js",
+          "path": "/",
+          "runtime": "Nodejs16",
+          "installCommand": "npm install",
+          "buildCommand": "",
+          "port": 3000
+        }
+      }
+    }
+  }
+}
