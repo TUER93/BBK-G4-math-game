@@ -22,6 +22,8 @@ if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
+console.log(`📁 数据存储目录: ${DATA_DIR}`);
+
 // 数据文件路径
 const DATA_FILE = path.join(DATA_DIR, 'data.json');
 const QUESTIONS_FILE = path.join(__dirname, 'questions.json');
