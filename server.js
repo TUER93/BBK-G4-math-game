@@ -523,11 +523,12 @@ app.post('/api/upgrade', (req, res) => {
     });
 });
 
-// 获取排行榜 - 班级
+// 获取排行榜 - 班级（前20名）
 app.get('/api/rank/class/:className', (req, res) => {
     const classUsers = gameData.users
         .filter(u => u.className === req.params.className)
-        .sort((a, b) => b.level - a.level);
+        .sort((a, b) => b.level - a.level)
+        .slice(0, 20); // 只返回前20名
     res.json(classUsers);
 });
 
@@ -551,11 +552,11 @@ app.get('/api/answer-history/:userId', (req, res) => {
     });
 });
 
-// 获取排行榜 - 总榜
+// 获取排行榜 - 总榜（前90名）
 app.get('/api/rank/total', (req, res) => {
     const rankedUsers = gameData.users
         .sort((a, b) => b.level - a.level)
-        .slice(0, 50); // 只返回前50名
+        .slice(0, 90); // 只返回前90名
     res.json(rankedUsers);
 });
 

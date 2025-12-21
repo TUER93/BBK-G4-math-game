@@ -786,7 +786,13 @@ async function showRank(type) {
         const ranks = await response.json();
         
         const list = document.getElementById('rankList');
-        list.innerHTML = ranks.map((user, index) => {
+        
+        // 添加提示信息
+        const tipText = type === 'class' 
+            ? `<div style="text-align: center; color: #718096; padding: 10px; font-size: 14px;">仅展示班级前20名</div>`
+            : `<div style="text-align: center; color: #718096; padding: 10px; font-size: 14px;">仅展示年级前90名</div>`;
+        
+        list.innerHTML = tipText + ranks.map((user, index) => {
             let className = '';
             if (index === 0) className = 'top1';
             else if (index === 1) className = 'top2';
