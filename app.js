@@ -386,6 +386,9 @@ async function submitAnswer() {
         // 更新用户数据
         if (result.correct) {
             currentUser.elements = result.elements;
+            
+            // 检查是否满足自动升级条件
+            checkAndAutoUpgrade();
         }
         
         // 更新统计数据
@@ -670,6 +673,79 @@ async function confirmGift() {
 }
 
 // ========== 升级功能 ==========
+// 检查并自动升级
+async function checkAndAutoUpgrade() {
+    // 检查升级条件
+    const hasThunder = currentUser.elements.thunder >= 1;
+    const hasFire = currentUser.elements.fire >= 1;
+    const otherTotal = currentUser.elements.water + currentUser.elements.wind + 
+                       currentUser.elements.rock + currentUser.elements.grass + 
+                       currentUser.elements.ice;
+    const hasOthers = otherTotal >= 10;
+    
+    // 如果满足所有条件，自动升级
+    if (hasThunder && hasFire && hasOthers) {
+        try {
+            const response = await fetch(`${SERVER_URL}/api/upgrade`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id })
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                // 播放升级音效
+                audioManager.playUpgradeSound();
+                
+                currentUser.level = result.level;
+                currentUser.elements = result.elements;
+                updateUserDisplay();
+                
+                // 显示升级通知
+                showUpgradeNotification(result.level);
+            }
+        } catch (error) {
+            console.error('自动升级失败:', error);
+        }
+    }
+}
+
+// 显示升级通知
+function showUpgradeNotification(newLevel) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px 50px;
+        border-radius: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        z-index: 10000;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        animation: upgradePopup 0.5s ease-out;
+        text-align: center;
+    `;
+    notification.innerHTML = `
+        <div style="font-size: 48px; margin-bottom: 10px;">🎉</div>
+        <div>恭喜升级!</div>
+        <div style="font-size: 36px; margin-top: 10px; color: #ffd700;">Lv.${newLevel}</div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // 3秒后移除通知
+    setTimeout(() => {
+        notification.style.animation = 'upgradePopup 0.5s ease-out reverse';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 500);
+    }, 3000);
+}
+
 function showUpgradeModal() {
     const modal = document.getElementById('upgradeModal');
     document.getElementById('currentLevel').textContent = currentUser.level;

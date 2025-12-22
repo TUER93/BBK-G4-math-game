@@ -845,6 +845,21 @@ body {
     }
 }
 
+/* 升级弹窗动画 */
+@keyframes upgradePopup {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
 /* 滚动条美化 */
 ::-webkit-scrollbar {
     width: 8px;
