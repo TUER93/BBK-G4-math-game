@@ -120,6 +120,7 @@ function initButtons() {
     // 用户管理
     document.getElementById('searchUser').addEventListener('input', filterUsers);
     document.getElementById('filterClass').addEventListener('change', filterUsers);
+    document.getElementById('editUserForm').addEventListener('submit', saveUserData);
     
     // 批量导入
     document.getElementById('importStudentsBtn').addEventListener('click', importStudents);
@@ -275,6 +276,7 @@ function renderUsers(data) {
                 <td>总计: ${totalElements} 个</td>
                 <td class="action-btns">
                     <button class="btn btn-info" onclick="viewUserDetail(${index})">查看详情</button>
+                    <button class="btn btn-warning" onclick="editUser(${index})">✏️ 编辑</button>
                     <button class="btn btn-danger" onclick="deleteUser(${index})">删除</button>
                 </td>
             </tr>
@@ -513,6 +515,66 @@ function viewUserDetail(index) {
     `;
     
     document.getElementById('userDetailModal').classList.add('show');
+}
+
+// 编辑用户数据
+function editUser(index) {
+    const user = users[index];
+    currentEditId = index;
+    
+    // 填充用户信息
+    document.getElementById('editUserClass').textContent = user.className;
+    document.getElementById('editUserName').textContent = user.name;
+    document.getElementById('editUserLevel').value = user.level;
+    
+    // 填充元素数量
+    document.getElementById('editElementFire').value = user.elements.fire || 0;
+    document.getElementById('editElementWater').value = user.elements.water || 0;
+    document.getElementById('editElementWind').value = user.elements.wind || 0;
+    document.getElementById('editElementRock').value = user.elements.rock || 0;
+    document.getElementById('editElementGrass').value = user.elements.grass || 0;
+    document.getElementById('editElementThunder').value = user.elements.thunder || 0;
+    document.getElementById('editElementIce').value = user.elements.ice || 0;
+    
+    document.getElementById('editUserModal').classList.add('show');
+}
+
+// 保存用户数据
+async function saveUserData(e) {
+    e.preventDefault();
+    
+    const userData = {
+        level: parseInt(document.getElementById('editUserLevel').value),
+        elements: {
+            fire: parseInt(document.getElementById('editElementFire').value),
+            water: parseInt(document.getElementById('editElementWater').value),
+            wind: parseInt(document.getElementById('editElementWind').value),
+            rock: parseInt(document.getElementById('editElementRock').value),
+            grass: parseInt(document.getElementById('editElementGrass').value),
+            thunder: parseInt(document.getElementById('editElementThunder').value),
+            ice: parseInt(document.getElementById('editElementIce').value)
+        }
+    };
+    
+    try {
+        const response = await fetch(`${SERVER_URL}/api/admin/users/${currentEditId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ 用户数据更新成功!');
+            closeModal('editUserModal');
+            loadUsers();
+        } else {
+            alert(result.message || '更新失败');
+        }
+    } catch (error) {
+        console.error('更新用户数据失败:', error);
+        alert('更新失败');
+    }
 }
 
 async function deleteUser(index) {

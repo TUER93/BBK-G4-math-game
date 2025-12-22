@@ -259,6 +259,66 @@
         </div>
     </div>
 
+    <!-- 编辑用户数据弹窗 -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content large">
+            <h2>编辑用户数据</h2>
+            <form id="editUserForm">
+                <div class="form-group">
+                    <label>用户信息:</label>
+                    <div style="padding: 10px; background: #f7fafc; border-radius: 8px; margin-bottom: 15px;">
+                        <div><strong>班级:</strong> <span id="editUserClass"></span></div>
+                        <div><strong>姓名:</strong> <span id="editUserName"></span></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>等级:</label>
+                    <input type="number" id="editUserLevel" min="1" max="999" required placeholder="当前等级">
+                </div>
+                
+                <div class="form-group">
+                    <label>元素数量:</label>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                        <div>
+                            <label style="font-size: 14px;">🔥 火:</label>
+                            <input type="number" id="editElementFire" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">💧 水:</label>
+                            <input type="number" id="editElementWater" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">🌪️ 风:</label>
+                            <input type="number" id="editElementWind" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">🪨 岩:</label>
+                            <input type="number" id="editElementRock" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">🌿 草:</label>
+                            <input type="number" id="editElementGrass" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">⚡ 雷:</label>
+                            <input type="number" id="editElementThunder" min="0" max="999" required>
+                        </div>
+                        <div>
+                            <label style="font-size: 14px;">❄️ 冰:</label>
+                            <input type="number" id="editElementIce" min="0" max="999" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">💾 保存修改</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editUserModal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="admin.js"></script>
 </body>
 </html>

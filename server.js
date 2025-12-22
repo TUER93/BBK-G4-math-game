@@ -785,6 +785,39 @@ app.delete('/api/admin/users/:index', (req, res) => {
     }
 });
 
+// 更新用户数据（等级和元素）
+app.put('/api/admin/users/:index', (req, res) => {
+    const index = parseInt(req.params.index);
+    const { level, elements } = req.body;
+    
+    if (index >= 0 && index < gameData.users.length) {
+        const user = gameData.users[index];
+        
+        // 更新等级
+        if (level !== undefined) {
+            user.level = parseInt(level);
+        }
+        
+        // 更新元素
+        if (elements) {
+            user.elements = {
+                fire: parseInt(elements.fire) || 0,
+                water: parseInt(elements.water) || 0,
+                wind: parseInt(elements.wind) || 0,
+                rock: parseInt(elements.rock) || 0,
+                grass: parseInt(elements.grass) || 0,
+                thunder: parseInt(elements.thunder) || 0,
+                ice: parseInt(elements.ice) || 0
+            };
+        }
+        
+        saveData();
+        res.json({ success: true, user });
+    } else {
+        res.json({ success: false, message: '用户不存在' });
+    }
+});
+
 // 备份数据
 app.get('/api/admin/backup', (req, res) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
