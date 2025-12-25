@@ -848,6 +848,25 @@ app.get('/api/admin/export', (req, res) => {
     });
 });
 
+// 下载数据文件（直接下载 data.json）
+app.get('/api/admin/download-data', (req, res) => {
+    try {
+        if (fs.existsSync(DATA_FILE)) {
+            const timestamp = new Date().toISOString().split('T')[0];
+            res.setHeader('Content-Type', 'application/json');
+            res.setHeader('Content-Disposition', `attachment; filename="data_${timestamp}.json"`);
+            
+            const data = fs.readFileSync(DATA_FILE, 'utf8');
+            res.send(data);
+        } else {
+            res.status(404).json({ success: false, message: '数据文件不存在' });
+        }
+    } catch (error) {
+        console.error('下载数据文件失败:', error);
+        res.status(500).json({ success: false, message: '下载失败' });
+    }
+});
+
 // 启动服务器
 app.listen(PORT, () => {
     console.log(`

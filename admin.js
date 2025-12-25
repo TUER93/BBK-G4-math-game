@@ -129,6 +129,7 @@ function initButtons() {
     document.getElementById('uploadFileBtn').addEventListener('click', uploadFile);
     
     // 备份和导出
+    document.getElementById('downloadDataBtn').addEventListener('click', downloadDataFile);
     document.getElementById('backupBtn').addEventListener('click', backupData);
     document.getElementById('exportBtn').addEventListener('click', exportAllData);
 }
@@ -774,6 +775,26 @@ async function uploadFile() {
 }
 
 // ========== 备份和导出 ==========
+// ========== 数据备份和导出 ==========
+// 下载数据文件（原始 data.json）
+async function downloadDataFile() {
+    try {
+        const timestamp = new Date().toISOString().split('T')[0];
+        const a = document.createElement('a');
+        a.href = `${SERVER_URL}/api/admin/download-data`;
+        a.download = `data_${timestamp}.json`;
+        a.click();
+        
+        // 延迟提示，让下载先开始
+        setTimeout(() => {
+            alert('✅ 数据文件下载开始！\n\n文件名: data_' + timestamp + '.json');
+        }, 500);
+    } catch (error) {
+        console.error('下载数据文件失败:', error);
+        alert('下载失败');
+    }
+}
+
 async function backupData() {
     try {
         const response = await fetch(`${SERVER_URL}/api/admin/backup`);
