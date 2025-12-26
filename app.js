@@ -381,22 +381,30 @@ async function submitAnswer() {
         });
         
         const result = await response.json();
-        showResult(result);
         
         // 更新用户数据
         if (result.correct) {
             currentUser.elements = result.elements;
             
-            // 检查是否满足自动升级条件
-            checkAndAutoUpgrade();
+            // 更新统计数据
+            if (result.statistics) {
+                userStatistics = result.statistics;
+            }
         }
         
-        // 更新统计数据
-        if (result.statistics) {
-            userStatistics = result.statistics;
-        }
-        
+        // 先更新显示
         updateUserDisplay();
+        
+        // 显示结果
+        showResult(result);
+        
+        // 答对题目后检查自动升级（在显示结果之后，避免时序问题）
+        if (result.correct) {
+            // 延迟检查，避免与显示更新冲突
+            setTimeout(() => {
+                checkAndAutoUpgrade();
+            }, 500);
+        }
     } catch (error) {
         console.error('提交答案失败:', error);
     }
@@ -676,14 +684,27 @@ async function confirmGift() {
 // 检查并自动升级
 async function checkAndAutoUpgrade() {
     // 检查升级条件
-    const hasThunder = currentUser.elements.thunder >= 1;
-    const hasFire = currentUser.elements.fire >= 1;
-    const otherTotal = currentUser.elements.water + currentUser.elements.wind + 
-                       currentUser.elements.rock + currentUser.elements.grass + 
-                       currentUser.elements.ice;
+    const thunder = currentUser.elements.thunder || 0;
+    const fire = currentUser.elements.fire || 0;
+    const water = currentUser.elements.water || 0;
+    const wind = currentUser.elements.wind || 0;
+    const rock = currentUser.elements.rock || 0;
+    const grass = currentUser.elements.grass || 0;
+    const ice = currentUser.elements.ice || 0;
+    
+    const hasThunder = thunder >= 1;
+    const hasFire = fire >= 1;
+    const otherTotal = water + wind + rock + grass + ice;
     const hasOthers = otherTotal >= 10;
     
-    // 如果满足所有条件，自动升级
+    console.log('🔍 检查升级条件:', {
+        雷: thunder, 
+        火: fire, 
+        其他总和: otherTotal,
+        满足条件: hasThunder && hasFire && hasOthers
+    });
+    
+    // 只有严格满足所有条件才自动升级
     if (hasThunder && hasFire && hasOthers) {
         try {
             const response = await fetch(`${SERVER_URL}/api/upgrade`, {
@@ -694,6 +715,8 @@ async function checkAndAutoUpgrade() {
             
             const result = await response.json();
             if (result.success) {
+                console.log('✅ 自动升级成功!', result);
+                
                 // 播放升级音效
                 audioManager.playUpgradeSound();
                 
@@ -703,6 +726,8 @@ async function checkAndAutoUpgrade() {
                 
                 // 显示升级通知
                 showUpgradeNotification(result.level);
+            } else {
+                console.log('❌ 升级失败:', result.message);
             }
         } catch (error) {
             console.error('自动升级失败:', error);
