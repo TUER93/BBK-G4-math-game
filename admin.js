@@ -9,6 +9,19 @@ let users = [];
 let currentEditId = null;
 let currentEditType = null;
 
+// 防抖函数（防止频繁触发）
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // ========== 密码保护 ==========
 const ADMIN_PASSWORD = 'HUA967101';
 
@@ -102,7 +115,7 @@ function initButtons() {
     });
     
     document.getElementById('studentForm').addEventListener('submit', saveStudent);
-    document.getElementById('searchStudent').addEventListener('input', filterStudents);
+    document.getElementById('searchStudent').addEventListener('input', debounce(filterStudents, 300));
     
     // 题目管理
     document.getElementById('addQuestionBtn').addEventListener('click', () => {
@@ -114,11 +127,11 @@ function initButtons() {
     });
     
     document.getElementById('questionForm').addEventListener('submit', saveQuestion);
-    document.getElementById('searchQuestion').addEventListener('input', filterQuestions);
+    document.getElementById('searchQuestion').addEventListener('input', debounce(filterQuestions, 300));
     document.getElementById('filterDifficulty').addEventListener('change', filterQuestions);
     
     // 用户管理
-    document.getElementById('searchUser').addEventListener('input', filterUsers);
+    document.getElementById('searchUser').addEventListener('input', debounce(filterUsers, 300));
     document.getElementById('filterClass').addEventListener('change', filterUsers);
     document.getElementById('editUserForm').addEventListener('submit', saveUserData);
     
