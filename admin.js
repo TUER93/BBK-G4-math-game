@@ -134,6 +134,11 @@ function initButtons() {
     document.getElementById('searchUser').addEventListener('input', debounce(filterUsers, 300));
     document.getElementById('filterClass').addEventListener('change', filterUsers);
     document.getElementById('editUserForm').addEventListener('submit', saveUserData);
+    document.getElementById('batchGiftBtn').addEventListener('click', showBatchGiftModal);
+    document.getElementById('batchGiftForm').addEventListener('submit', executeBatchGift);
+    document.getElementById('giftScope').addEventListener('change', handleGiftScopeChange);
+    document.getElementById('giftAmount').addEventListener('input', updateAffectedUsersCount);
+    document.getElementById('giftElementType').addEventListener('change', updateAffectedUsersCount);
     
     // 批量导入
     document.getElementById('importStudentsBtn').addEventListener('click', importStudents);
@@ -841,6 +846,124 @@ async function exportAllData() {
     } catch (error) {
         console.error('导出失败:', error);
         alert('导出失败');
+    }
+}
+
+// ========== 批量赠送元素功能 ==========
+// 显示批量赠送弹窗
+function showBatchGiftModal() {
+    // 加载班级列表到赠送弹窗
+    const giftTargetClass = document.getElementById('giftTargetClass');
+    const classes = [...new Set(users.map(u => u.className))];
+    giftTargetClass.innerHTML = '<option value="">请选择班级</option>' +
+        classes.map(c => `<option value="${c}">${c}</option>`).join('');
+    
+    // 重置表单
+    document.getElementById('batchGiftForm').reset();
+    document.getElementById('classSelectGroup').style.display = 'none';
+    updateAffectedUsersCount();
+    
+    // 显示弹窗
+    document.getElementById('batchGiftModal').classList.add('show');
+}
+
+// 处理赠送范围变化
+function handleGiftScopeChange() {
+    const scope = document.getElementById('giftScope').value;
+    const classSelectGroup = document.getElementById('classSelectGroup');
+    
+    if (scope === 'class') {
+        classSelectGroup.style.display = 'block';
+    } else {
+        classSelectGroup.style.display = 'none';
+    }
+    
+    updateAffectedUsersCount();
+}
+
+// 更新受影响用户数量
+function updateAffectedUsersCount() {
+    const scope = document.getElementById('giftScope').value;
+    const targetClass = document.getElementById('giftTargetClass').value;
+    
+    let count = 0;
+    if (scope === 'all') {
+        count = users.length;
+    } else if (scope === 'class' && targetClass) {
+        count = users.filter(u => u.className === targetClass).length;
+    }
+    
+    document.getElementById('affectedUsersCount').textContent = count;
+}
+
+// 执行批量赠送
+async function executeBatchGift(e) {
+    e.preventDefault();
+    
+    const elementType = document.getElementById('giftElementType').value;
+    const amount = parseInt(document.getElementById('giftAmount').value);
+    const scope = document.getElementById('giftScope').value;
+    const targetClass = document.getElementById('giftTargetClass').value;
+    
+    if (!elementType) {
+        alert('请选择元素类型');
+        return;
+    }
+    
+    if (amount <= 0 || amount > 100) {
+        alert('赠送数量必须在 1-100 之间');
+        return;
+    }
+    
+    if (scope === 'class' && !targetClass) {
+        alert('请选择目标班级');
+        return;
+    }
+    
+    // 计算受影响的用户
+    let affectedUsers = [];
+    if (scope === 'all') {
+        affectedUsers = users;
+    } else if (scope === 'class') {
+        affectedUsers = users.filter(u => u.className === targetClass);
+    }
+    
+    const elementNames = {
+        fire: '🔥 火', water: '💧 水', wind: '🌪️ 风', rock: '🪨 岩',
+        grass: '🌿 草', thunder: '⚡ 雷', ice: '❄️ 冰'
+    };
+    
+    const scopeText = scope === 'all' ? '全体用户' : `${targetClass}的学生`;
+    const confirmMsg = `确认要给 ${scopeText}（共 ${affectedUsers.length} 人）\n每人赠送 ${elementNames[elementType]} 元素 × ${amount} 吗？\n\n此操作不可撤销！`;
+    
+    if (!confirm(confirmMsg)) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${SERVER_URL}/api/admin/batch-gift`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                elementType,
+                amount,
+                scope,
+                targetClass
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`🎁 赠送成功！\n\n已给 ${result.affectedCount} 名用户赠送 ${elementNames[elementType]} × ${amount}`);
+            closeModal('batchGiftModal');
+            loadUsers();
+        } else {
+            alert(`赠送失败：${result.message || '未知错误'}`);
+        }
+    } catch (error) {
+        console.error('批量赠送失败:', error);
+        alert(`赠送失败：${error.message}`);
     }
 }
 

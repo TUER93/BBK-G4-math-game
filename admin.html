@@ -118,6 +118,7 @@
             <div class="content-header">
                 <h2>用户游戏数据</h2>
                 <div class="actions">
+                    <button id="batchGiftBtn" class="btn btn-warning">🎁 批量赠送元素</button>
                     <select id="filterClass" class="filter-select">
                         <option value="">全部班级</option>
                     </select>
@@ -315,6 +316,65 @@
                 <div class="modal-actions">
                     <button type="submit" class="btn btn-success">💾 保存修改</button>
                     <button type="button" class="btn btn-secondary" onclick="closeModal('editUserModal')">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 批量赠送元素弹窗 -->
+    <div id="batchGiftModal" class="modal">
+        <div class="modal-content">
+            <h2>🎁 批量赠送元素给全体用户</h2>
+            <form id="batchGiftForm">
+                <div class="form-group">
+                    <label>选择元素类型:</label>
+                    <select id="giftElementType" required>
+                        <option value="">请选择元素</option>
+                        <option value="fire">🔥 火元素</option>
+                        <option value="water">💧 水元素</option>
+                        <option value="wind">🌪️ 风元素</option>
+                        <option value="rock">🪨 岩元素</option>
+                        <option value="grass">🌿 草元素</option>
+                        <option value="thunder">⚡ 雷元素</option>
+                        <option value="ice">❄️ 冰元素</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>赠送数量:</label>
+                    <input type="number" id="giftAmount" min="1" max="100" value="1" required placeholder="每人获得的数量">
+                    <p class="hint" style="color: #718096; margin-top: 5px;">
+                        💡 将给所有已注册用户赠送相同数量的元素
+                    </p>
+                </div>
+                
+                <div class="form-group">
+                    <label>赠送范围:</label>
+                    <select id="giftScope" required>
+                        <option value="all">全体用户</option>
+                        <option value="class">指定班级</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="classSelectGroup" style="display: none;">
+                    <label>选择班级:</label>
+                    <select id="giftTargetClass">
+                        <option value="">请选择班级</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <div style="padding: 15px; background: #fff5f5; border: 2px solid #feb2b2; border-radius: 8px;">
+                        <p style="color: #c53030; margin: 0; font-weight: bold;">⚠️ 确认操作</p>
+                        <p style="color: #742a2a; margin: 5px 0 0 0; font-size: 14px;">
+                            此操作将给 <span id="affectedUsersCount" style="font-weight: bold; color: #c53030;">0</span> 名用户赠送元素，请谨慎操作！
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-warning">🎁 确认赠送</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('batchGiftModal')">取消</button>
                 </div>
             </form>
         </div>

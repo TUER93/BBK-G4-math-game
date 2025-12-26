@@ -882,6 +882,76 @@ app.get('/api/admin/download-data', (req, res) => {
     }
 });
 
+// 批量赠送元素给用户
+app.post('/api/admin/batch-gift', (req, res) => {
+    const { elementType, amount, scope, targetClass } = req.body;
+    
+    // 验证参数
+    const validElements = ['fire', 'water', 'wind', 'rock', 'grass', 'thunder', 'ice'];
+    if (!validElements.includes(elementType)) {
+        return res.status(400).json({ success: false, message: '无效的元素类型' });
+    }
+    
+    if (!amount || amount <= 0 || amount > 100) {
+        return res.status(400).json({ success: false, message: '赠送数量必须在 1-100 之间' });
+    }
+    
+    if (!scope || !['all', 'class'].includes(scope)) {
+        return res.status(400).json({ success: false, message: '无效的赠送范围' });
+    }
+    
+    if (scope === 'class' && !targetClass) {
+        return res.status(400).json({ success: false, message: '请指定目标班级' });
+    }
+    
+    try {
+        // 筛选目标用户
+        let targetUsers = gameData.users;
+        if (scope === 'class') {
+            targetUsers = gameData.users.filter(u => u.className === targetClass);
+        }
+        
+        if (targetUsers.length === 0) {
+            return res.status(404).json({ success: false, message: '没有找到目标用户' });
+        }
+        
+        // 给每个用户赠送元素
+        let affectedCount = 0;
+        targetUsers.forEach(user => {
+            if (!user.elements) {
+                user.elements = {
+                    fire: 0, water: 0, wind: 0, rock: 0,
+                    grass: 0, thunder: 0, ice: 0
+                };
+            }
+            
+            user.elements[elementType] = (user.elements[elementType] || 0) + amount;
+            affectedCount++;
+        });
+        
+        // 保存数据
+        saveData();
+        
+        const elementNames = {
+            fire: '火🔥', water: '水💧', wind: '风🌪️', rock: '岩🪨',
+            grass: '草🌿', thunder: '雷⚡', ice: '冰❄️'
+        };
+        
+        console.log(`🎁 批量赠送成功: 给 ${affectedCount} 名用户赠送 ${elementNames[elementType]} × ${amount}`);
+        
+        res.json({ 
+            success: true, 
+            message: '赠送成功',
+            affectedCount,
+            elementType,
+            amount
+        });
+    } catch (error) {
+        console.error('批量赠送失败:', error);
+        res.status(500).json({ success: false, message: '赠送失败' });
+    }
+});
+
 // 启动服务器
 app.listen(PORT, () => {
     console.log(`
