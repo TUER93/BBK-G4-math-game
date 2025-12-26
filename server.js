@@ -26,6 +26,7 @@ console.log(`📁 数据存储目录: ${DATA_DIR}`);
 
 // 数据文件路径
 const DATA_FILE = path.join(DATA_DIR, 'data.json');
+const DATA_TEMPLATE_FILE = path.join(__dirname, 'data.template.json');
 const QUESTIONS_FILE = path.join(__dirname, 'questions.json');
 const STUDENTS_FILE = path.join(__dirname, 'students.json');
 
@@ -37,13 +38,27 @@ let gameData = {
 
 // 加载数据
 function loadData() {
+    // 如果 data.json 不存在，但模板文件存在，则复制模板
+    if (!fs.existsSync(DATA_FILE) && fs.existsSync(DATA_TEMPLATE_FILE)) {
+        console.log('📋 首次启动，从模板文件初始化数据...');
+        try {
+            fs.copyFileSync(DATA_TEMPLATE_FILE, DATA_FILE);
+            console.log('✅ 数据初始化成功');
+        } catch (error) {
+            console.error('❌ 复制模板文件失败:', error);
+        }
+    }
+    
     if (fs.existsSync(DATA_FILE)) {
         try {
             const data = fs.readFileSync(DATA_FILE, 'utf8');
             gameData = JSON.parse(data);
+            console.log(`✅ 已加载 ${gameData.users?.length || 0} 个用户数据`);
         } catch (error) {
             console.error('加载数据失败:', error);
         }
+    } else {
+        console.log('⚠️  未找到数据文件，使用空数据');
     }
 }
 
